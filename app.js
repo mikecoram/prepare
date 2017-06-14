@@ -1,6 +1,8 @@
 var express = require('express');
 var handlebars = require('express-handlebars');
 
+var routes = require('./routes.js');
+
 var app = express();
 
 app.engine('handlebars', handlebars({defaultLayout:'main'}));
@@ -9,6 +11,8 @@ app.set('view engine', 'handlebars');
 app.get('/', function (req, res) {
     res.render('home');
 });
+
+routes(app);
 
 var server = app.listen(8000, function () {
     var host = server.address().address;
