@@ -1,0 +1,10 @@
+Add 404 handling
+Add 'dotenv'
+Add config for 'Development', 'Test' and 'Production'
+Add error handling for development and Production
+Add 404 page
+Add error page
+Add Sequelize
+Add Passport.js and Passport-local authentication
+Add mocha and chai for unit testing
+Add gulp
