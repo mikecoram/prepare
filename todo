@@ -13,4 +13,6 @@ User table on admin page
 Api sub-url
 Allow admin to modify users
 User permissions
+Add public folder
+Server public folder as static content
 Add MMU styling
