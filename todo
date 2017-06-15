@@ -13,9 +13,10 @@ Add password recovery
 Add mocha and chai for unit testing
 Write unit tests
 Add gulp
-Add MMU styling
 Admin sub-url
 Admin page
 User table on admin page
 Api sub-url
 Allow admin to modify users
+User permissions
+Add MMU styling
