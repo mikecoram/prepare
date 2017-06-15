@@ -5,6 +5,17 @@ Add error handling for development and Production
 Add 404 page
 Add error page
 Add Sequelize
+Set up migrations
+Add user model
 Add Passport.js and Passport-local authentication
+Add user sign-up
+Add password recovery
 Add mocha and chai for unit testing
+Write unit tests
 Add gulp
+Add MMU styling
+Admin sub-url
+Admin page
+User table on admin page
+Api sub-url
+Allow admin to modify users
