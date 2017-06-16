@@ -3,8 +3,8 @@ var assert = chai.assert;
 
 describe('Database', function () {
     it('Connection', function (done) {
+        var env = 'test';
         var Sequelize = require('sequelize');
-        var env = 'development';
         var config = require(__dirname + '/../config/config.json')[env];
         var sequelize = new Sequelize(config.database, config.username, config.password, config);
         sequelize.authenticate().then(function (res) {
