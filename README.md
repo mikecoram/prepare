@@ -5,6 +5,7 @@ sequelize-cli,
 mocha,
 chai
 
+### Setup
 ~~~~ 
 git clone https://mikecoram@bitbucket.org/mikecoram/prepare.git
 npm install
