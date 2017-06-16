@@ -13,13 +13,12 @@
   "author": "",
   "license": "ISC",
   "homepage": "https://bitbucket.org/mikecoram/prepare#readme",
-  "devDependencies": {
+  "dependencies": {
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
-    "sequelize": "^4.1.0"
-  },
-  "dependencies": {
+    "sequelize": "^4.1.0",
+    "chai": "^4.0.2",
     "pg": "^6.2.4",
     "pg-hstore": "^2.3.2"
   }

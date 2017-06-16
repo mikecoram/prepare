@@ -2,8 +2,6 @@ Add password to user model
 Add Passport.js and Passport-local authentication
 Add user sign-up
 Add password recovery
-Add mocha and chai for unit testing
-Write unit tests
 Admin sub-url
 Admin page
 User table on admin page
