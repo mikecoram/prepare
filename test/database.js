@@ -1,6 +1,3 @@
-var chai = require('chai');
-var assert = chai.assert;
-
 describe('Database', function () {
     it('Connection', function (done) {
         var env = 'test';
