@@ -10,6 +10,13 @@ var app = express();
 app.engine('handlebars', handlebars({defaultLayout:'main'}));
 app.set('view engine', 'handlebars');
 
+var Sequelize = require('sequelize');
+var config = require(__dirname + '/config/config.json')['development'];
+var s = new Sequelize(config.database, config.username, config.password, config);
+s.authenticate().then(function() {
+    console.log('Connect to Database!');
+});
+
 routes(app);
 
 app.use(function(req, res, next) {

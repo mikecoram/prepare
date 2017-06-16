@@ -1,6 +1,4 @@
-Add Sequelize
-Set up migrations
-Add user model
+Add password to user model
 Add Passport.js and Passport-local authentication
 Add user sign-up
 Add password recovery
