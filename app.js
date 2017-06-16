@@ -7,6 +7,8 @@ var routes = require('./routes.js');
 
 var app = express();
 
+app.locals.appTitle = 'Boilerplate';
+
 app.engine('handlebars', handlebars({defaultLayout:'main'}));
 app.set('view engine', 'handlebars');
 
