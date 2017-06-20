@@ -1,5 +1,5 @@
-describe('Database', function () {
-    it('Connection', function (done) {
+describe('database', function () {
+    it('connects', function (done) {
         var env = 'test';
         var Sequelize = require('sequelize');
         var config = require(__dirname + '/../config/config.json')[env];
