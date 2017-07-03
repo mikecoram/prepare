@@ -8,8 +8,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
-        type: Sequelize.STRING
+      emailAddress: {
+          type: Sequelize.STRING,
+          validate: {
+              isEmail: true
+          }
+      },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      status: {
+        type: Sequelize.ENUM('active', 'inactive'),
+        defaultValue: 'active'
       },
       createdAt: {
         allowNull: false,
