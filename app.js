@@ -2,6 +2,10 @@ require('dotenv').config();
 
 var express = require('express');
 var handlebars = require('express-handlebars');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var passport = require('passport');
+var models = require('./models');
 
 var routes = require('./routes.js');
 
@@ -14,23 +18,19 @@ app.set('view engine', 'handlebars');
 
 routes(app);
 
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
+app.use(session({
+  secret: 'super',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+var passportStrategy = require('./config/passport')(passport, models.user);
 
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
