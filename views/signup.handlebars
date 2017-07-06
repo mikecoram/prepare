@@ -4,26 +4,28 @@
         <form action="/signup" method="POST" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="emailAddress">Email Address</label>
-                <input id="emailAddress" name="emailAddress" type="email" class="form-control" required></input>
+                <input id="emailAddress" name="emailAddress" class="form-control"></input>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <div>Your password must be at least 8 characters long and contain at least 1 number and 1 letter.</div>
-                <input id="password" name="password" type="password" class="form-control" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"></input>
+                <div>Your password must be at least 6 characters long.</div>
+                <input id="password" name="password" type="password" class="form-control"></input>
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
-                <input id="confirmPassword" name="confirmPassword" type="password" class="form-control" required></input>
+                <input id="confirmPassword" name="confirmPassword" type="password" class="form-control"></input>
             </div>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+
+            <div id="localError" hidden="true" class="alert alert-danger">
+            </div>
             {{#if errorMessage}}
                 <div class="alert alert-danger">
                     {{errorMessage}}
                 </div>
             {{/if}}
-
-            <div id="localError" hidden="true" class="form-group alert alert-danger">
-            </div>
         </form>
     </div>
 </div> <!-- /container -->

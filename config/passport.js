@@ -28,6 +28,8 @@ module.exports = function (passport, user) {
             return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
         }
 
+        // Validation
+
         User.findOne({
             where: {
                 emailAddress: emailAddress
@@ -89,7 +91,7 @@ module.exports = function (passport, user) {
         }).catch(function (err) {
             console.log('Error:', err);
             return done(null, false, {
-                message: 'Something went wrong during sign in.'
+                message: 'Something went wrong during login, please try again later.'
             });
         });
     }));

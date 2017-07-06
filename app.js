@@ -14,32 +14,33 @@ var app = express();
 
 app.locals.appTitle = 'Boilerplate';
 
+// Handlebars view engine
 app.engine('handlebars', handlebars({defaultLayout:'main'}));
 app.set('view engine', 'handlebars');
 
-// Server static files
+// Serve static files
 app.use(express.static('public'));
 
-// Initialise body parser
+// Body Parser
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
 
-// Initialise session
+// Session
 app.use(session({
   secret: 'super',
   resave: true,
   saveUninitialized: true
 }));
 
-// Initialise passport
+// Passport
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport, models.User);
 
-// Initialise cookies
-app.use(cookieParser('keyboard at'));
+// Cookies
+app.use(cookieParser('keyboard cat'));
 
 // Initialise flash
 var flash = require('express-flash');
