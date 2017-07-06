@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 var express = require('express');
+var cookieParser = require('cookie-parser');
 var handlebars = require('express-handlebars');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -21,16 +22,26 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// Initialize passport
+// Initialise session
 app.use(session({
   secret: 'super',
   resave: true,
   saveUninitialized: true
 }));
+
+// Initialise passport
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport, models.User);
 
+// Initialise cookies
+app.use(cookieParser('keyboard at'));
+
+// Initialise flash
+var flash = require('express-flash');
+app.use(flash());
+
+// Routes
 routes(app, passport);
 
 // Error handling
@@ -51,6 +62,7 @@ app.use(function (err, req, res, next) {
     });
 });
 
+// Listen
 var server = app.listen(8000, function () {
     var host = server.address().address;
     var port = server.address().port;

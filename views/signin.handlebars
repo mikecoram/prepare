@@ -10,7 +10,14 @@
                 <label for="password">Password</label>
                 <input name="password" type="password" class="form-control"></input>
             </div>
-            <button type="submit" class="btn btn-primary pull-right">Sign In</button>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </div>
+            {{#if errorMessage}}
+                <div class="form-group alert alert-danger">
+                    {{errorMessage}}
+                </div>
+            {{/if}}
         </form>
     </div>
 </div> <!-- /container -->

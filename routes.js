@@ -11,18 +11,19 @@ module.exports = function (app, passport) {
         res.render('signup');
     });
 
+    app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect: '/dashboard',
+        failureRedirect: '/signup',
+    }));
+
     app.get('/signin', function (req, res) {
-        res.render('signin');
+        res.render('signin', {errorMessage: req.flash('error')});
     });
 
     app.post('/signin', passport.authenticate('local-signin', {
         successRedirect: '/dashboard',
         failureRedirect: '/signin',
-    }));
-
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/dashboard',
-        failureRedirect: '/signup',
+        failureFlash: true
     }));
 
     app.get('/signout', function (req, res) {
