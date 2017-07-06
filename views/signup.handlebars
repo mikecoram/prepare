@@ -19,12 +19,9 @@
                 <button type="submit" class="btn btn-primary">Sign Up</button>
             </div>
 
-            <div id="localError" hidden="true" class="alert alert-danger">
-            </div>
+            <div id="localError" hidden="true" class="alert alert-danger"></div>
             {{#if errorMessage}}
-                <div class="alert alert-danger">
-                    {{errorMessage}}
-                </div>
+                <div class="alert alert-danger">{{errorMessage}}</div>
             {{/if}}
         </form>
     </div>

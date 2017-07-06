@@ -29,6 +29,13 @@ module.exports = function (passport, user) {
         }
 
         // Validation
+        var validation = require('../lib/validation');
+        if (!validation.isValidEmailAddress(emailAddress)) {
+            return done(null, false);
+        }
+        if (!validation.isValidPassword(password)) {
+            return done(null, false);
+        }
 
         User.findOne({
             where: {
@@ -37,11 +44,11 @@ module.exports = function (passport, user) {
         }).then(function (user) {
             if (user) {
                 return done(null, false, {
-                    message: 'Email address is already in use.'
+                    message: 'That email address is already in use.'
                 });
             }
             else {
-                var hashedPassword = generateHash(password);
+                var hashedPassword   = generateHash(password);
                 var data = {
                     emailAddress: emailAddress,
                     password: hashedPassword
@@ -66,8 +73,8 @@ module.exports = function (passport, user) {
     },
     function(req, emailAddress, password, done) {
         var User = user;
-        var isValidPassword = function(userpass, password) {
-            return bCrypt.compareSync(password, userpass);
+        var passwordMatches = function(reqPassword, dbPassword) {
+            return bCrypt.compareSync(dbPassword, reqPassword);
         }
 
         User.findOne({
@@ -80,14 +87,13 @@ module.exports = function (passport, user) {
                     message: 'Email address does not exist.'
                 });
             }
-            if (!isValidPassword(user.password, password)) {
+            if (!passwordMatches(user.password, password)) {
                 return done(null, false, {
                     message: 'Incorrect password.'
                 });
             }
 
-            var userinfo = user.get();
-            return done(null, userinfo);
+            return done(null, user.get());
         }).catch(function (err) {
             console.log('Error:', err);
             return done(null, false, {

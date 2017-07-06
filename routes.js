@@ -8,12 +8,13 @@ module.exports = function (app, passport) {
     });
 
     app.get('/signup', function (req, res) {
-        res.render('signup');
+        res.render('signup', {errorMessage: req.flash('error')});
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/dashboard',
         failureRedirect: '/signup',
+        failureFlash: true
     }));
 
     app.get('/login', function (req, res) {
