@@ -1,4 +1,3 @@
-Add password and email address validation [Server]
 Add password recovery
 Admin sub-url
 Admin page
@@ -6,7 +5,7 @@ User table on admin page
 Api sub-url
 Allow admin to modify users
 User permissions
-Add public folder
-Serve public folder as static content
 Add MMU styling
 Add gulp
+Re-organize
+Pull form buttons to the right
