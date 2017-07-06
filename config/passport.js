@@ -4,7 +4,7 @@ module.exports = function (passport, user) {
     var User = user;
     var LocalStrategy = require('passport-local').Strategy;
 
-    passport.use('local-signup', {
+    passport.use('local-signup', new LocalStrategy({
         usernameField: 'emailAddress',
         passwordField: 'password',
         passReqToCallback: true
@@ -41,5 +41,5 @@ module.exports = function (passport, user) {
                 });
             }
         });
-    });
+    }));
 }

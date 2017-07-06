@@ -16,13 +16,12 @@ app.locals.appTitle = 'Boilerplate';
 app.engine('handlebars', handlebars({defaultLayout:'main'}));
 app.set('view engine', 'handlebars');
 
-routes(app);
-
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
 
+// Initialize passport
 app.use(session({
   secret: 'super',
   resave: true,
@@ -30,8 +29,11 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-var passportStrategy = require('./config/passport')(passport, models.user);
+require('./config/passport')(passport, models.user);
 
+routes(app, passport);
+
+// Error handling
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
@@ -39,9 +41,11 @@ app.use(function (req, res, next) {
 });
 
 app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
+    var status = err.status || 500;
+    res.status(status);
     res.render('error', {
-        status: err.status,
+        layout: false,
+        status: status,
         message: err.message,
         error: app.get('env') === 'development' ? err : ''
     });
