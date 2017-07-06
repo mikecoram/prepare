@@ -29,7 +29,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport')(passport, models.user);
+require('./config/passport')(passport, models.User);
 
 routes(app, passport);
 

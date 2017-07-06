@@ -10,6 +10,7 @@ module.exports = function (passport, user) {
         passReqToCallback: true
     },
     function (req, emailAddress, password, done) {
+        console.log('post')
         var generateHash = function (password) {
             return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
         }
@@ -27,7 +28,7 @@ module.exports = function (passport, user) {
             else {
                 var hashedPassword = generateHash(password);
                 var data = {
-                    email: email,
+                    emailAddress: emailAddress,
                     password: hashedPassword
                 };
 
