@@ -16,13 +16,13 @@ module.exports = function (app, passport) {
         failureRedirect: '/signup',
     }));
 
-    app.get('/signin', function (req, res) {
-        res.render('signin', {errorMessage: req.flash('error')});
+    app.get('/login', function (req, res) {
+        res.render('login', {errorMessage: req.flash('error')});
     });
 
-    app.post('/signin', passport.authenticate('local-signin', {
+    app.post('/login', passport.authenticate('local-signin', {
         successRedirect: '/dashboard',
-        failureRedirect: '/signin',
+        failureRedirect: '/login',
         failureFlash: true
     }));
 

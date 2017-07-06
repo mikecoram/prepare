@@ -1,4 +1,3 @@
-Add sign up error messages (req.flash)
 Add password validation and verification [Local]
 Add password and email address validation [Server]
 Add password recovery
