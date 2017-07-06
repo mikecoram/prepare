@@ -4,6 +4,20 @@ module.exports = function (passport, user) {
     var User = user;
     var LocalStrategy = require('passport-local').Strategy;
 
+    passport.serializeUser(function(user, done) {
+        done(null, user.id);
+    });
+
+    passport.deserializeUser(function(id, done) {
+        User.findById(id).then(function(user) {
+            if (user) {
+                done(null, user.get());
+            } else {
+                done(user.errors, null);
+            }
+        });
+    });
+
     passport.use('local-signup', new LocalStrategy({
         usernameField: 'emailAddress',
         passwordField: 'password',
@@ -42,18 +56,4 @@ module.exports = function (passport, user) {
             }
         });
     }));
-
-    passport.serializeUser(function(user, done) {
-        done(null, user.id);
-    });
-
-    passport.deserializeUser(function(id, done) {
-        User.findById(id).then(function(user) {
-            if (user) {
-                done(null, user.get());
-            } else {
-                done(user.errors, null);
-            }
-        });
-    });
 }
