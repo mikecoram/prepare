@@ -1,5 +1,6 @@
-Add Passport.js and Passport-local authentication
-Add user sign-up
+Add sign up error messages (req.flash)
+Add password validation and verification [Local]
+Add password and email address validation [Server]
 Add password recovery
 Admin sub-url
 Admin page
