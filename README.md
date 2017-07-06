@@ -13,8 +13,10 @@ git clone https://mikecoram@bitbucket.org/mikecoram/prepare.git
 npm install
 npm install -g sequelize-cli mocha
 ~~~~
-Set up a postgreSQL database
-Edit config/config.json
+Set up a postgreSQL database and then edit config/config.json.
+~~~~
+db:migrate:all
+~~~~
 
 ### Running
 ~~~~
