@@ -24,5 +24,4 @@ npm start
 ### Testing
 ~~~~
 npm test
-mocha // alternative
 ~~~~
