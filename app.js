@@ -17,6 +17,10 @@ app.locals.appTitle = 'Boilerplate';
 app.engine('handlebars', handlebars({defaultLayout:'main'}));
 app.set('view engine', 'handlebars');
 
+// Server static files
+app.use(express.static('public'));
+
+// Initialise body parser
 app.use(bodyParser.urlencoded({
   extended: true
 }));
