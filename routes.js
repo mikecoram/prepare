@@ -1,13 +1,23 @@
-var main = require('./handlers/main');
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
+
+function redirectToAuthArea(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/dashboard');
+}
 
 module.exports = function (app, passport) {
-    app.get('/', main.home);
-
-    app.get('/dashboard', isLoggedIn, function (req, res) {
-        res.send('dashboard');
+    app.get('/', [redirectToAuthArea], function (req, res) {
+        res.render('home');
     });
 
-    app.get('/signup', function (req, res) {
+    app.get('/signup', [redirectToAuthArea], function (req, res) {
         res.render('signup', {errorMessage: req.flash('error')});
     });
 
@@ -17,7 +27,7 @@ module.exports = function (app, passport) {
         failureFlash: true
     }));
 
-    app.get('/login', function (req, res) {
+    app.get('/login', [redirectToAuthArea], function (req, res) {
         res.render('login', {errorMessage: req.flash('error')});
     });
 
@@ -27,16 +37,15 @@ module.exports = function (app, passport) {
         failureFlash: true
     }));
 
-    app.get('/signout', function (req, res) {
+    app.get('/logout', function (req, res) {
         req.session.destroy(function (err) {
             res.redirect('/');
         });
     });
 
-    function isLoggedIn(req, res, next) {
-        if (req.isAuthenticated()) {
-            return next();
-        }
-        res.redirect('/signin');
-    }
+    app.get('/dashboard', [isLoggedIn], function (req, res) {
+        res.render('dashboard', {
+            authorised: req.user != undefined
+        });
+    });
 };
