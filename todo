@@ -1,11 +1,25 @@
 Add 'Don't have an account?' and 'Forgotten your password?' links
 Add password recovery
+    Email capability
+    Send password recovery email with token
+    Add password recovery route
+    Check token has not expired and is active
+    Check token matches email address
+    Change use password
 Admin sub-url
 Admin page
 User table on admin page
 Allow admin to modify users
 User permissions
-Add MMU styling
 Add gulp
-Re-organize
+    css preproccesor: less / sass etc.
+Re-organize code
+    examine other express applications
+    sort out routes.js, what to do with controllers / handlers
 Pull form buttons to the right without breaking error message formatting
+Add more testing
+    Client-side validation
+    Server-side validation
+    Page tests
+    Auth tests
+    App tests?
