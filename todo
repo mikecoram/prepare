@@ -1,4 +1,6 @@
 Add password recovery
+    Set up gmail account to send from
+    Generate token
     Send password recovery email with token
     Add password recovery route
     Check token has not expired and is active
@@ -9,20 +11,22 @@ Admin page
 User table on admin page
 Allow admin to modify users
 User permissions
-Add gulp
-    css preproccesor: less / sass etc.
-    js bundling
-    js minification
-    js obfuscation
 Re-organize code
     examine other express applications
     sort out routes.js, what to do with controllers / handlers
     seperate app into a seperate folder? (leaving db in root)
     seperate client-side folder?
 Pull form buttons to the right without breaking error message formatting
+
 Add more testing
     Client-side validation
     Server-side validation
     Page tests
     Auth tests
     App tests?
+
+Add gulp
+    css preproccesor: less / sass etc.
+    js bundling
+    js minification
+    js obfuscation
