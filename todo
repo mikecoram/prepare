@@ -1,6 +1,4 @@
-Add 'Don't have an account?' and 'Forgotten your password?' links
 Add password recovery
-    Email capability
     Send password recovery email with token
     Add password recovery route
     Check token has not expired and is active

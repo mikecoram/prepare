@@ -43,6 +43,14 @@ module.exports = function (app, passport) {
         });
     });
 
+    app.get('/forgottenpassword', [redirectToAuthArea], function (req, res) {
+        res.render('forgottenpassword');
+    });
+
+    app.post('/forgottenpassword', function (req, res) {
+        
+    });
+
     app.get('/dashboard', [isLoggedIn], function (req, res) {
         res.render('dashboard', {
             authorised: req.user != undefined
