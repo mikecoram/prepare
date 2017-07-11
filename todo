@@ -1,5 +1,11 @@
-Move FROM email address from lib/email.js to config
-Use '.hbs' extension instead of .handlebars
+Move FROM email address from lib/email.js to config or static globals
+Static globals?
+Move app name to static globals?
+Re-organize code
+    examine other express applications
+    sort out routes.js, what to do with controllers / handlers
+    seperate app into a seperate folder? (leaving db in root)
+    seperate client-side folder?
 Add password recovery
     Generate token
     Send password recovery email with token
@@ -12,11 +18,6 @@ Admin page
 User table on admin page
 Allow admin to modify users
 User permissions
-Re-organize code
-    examine other express applications
-    sort out routes.js, what to do with controllers / handlers
-    seperate app into a seperate folder? (leaving db in root)
-    seperate client-side folder?
 Pull form buttons to the right without breaking error message formatting
 
 Add more testing
