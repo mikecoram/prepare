@@ -1,36 +1,32 @@
 require('dotenv').config();
 
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var handlebars = require('express-handlebars');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var passport = require('passport');
 var models = require('./models');
 
-var routes = require('./routes.js');
-
+var express = require('express');
 var app = express();
 
 app.locals.appTitle = 'Boilerplate';
 
 // Handlebars view engine
+var handlebars = require('express-handlebars');
 app.engine('.hbs', handlebars({
     defaultLayout:'main', 
     extname:'.hbs'
 }));
 app.set('view engine', '.hbs');
 
-// Serve static files
+// Static files
 app.use(express.static('public'));
 
 // Body Parser
+var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
 
 // Session
+var session = require('express-session');
 app.use(session({
   secret: 'super',
   resave: true,
@@ -38,18 +34,21 @@ app.use(session({
 }));
 
 // Passport
+var passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
 require('./lib/passport')(passport, models.User);
 
 // Cookies
+var cookieParser = require('cookie-parser');
 app.use(cookieParser('keyboard cat'));
 
-// Initialise flash
+// Flash
 var flash = require('express-flash');
 app.use(flash());
 
 // Routes
+var routes = require('./routes.js');
 routes(app, passport);
 
 // Error handling
