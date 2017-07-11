@@ -5,7 +5,7 @@ sequelize-cli,
 mocha
 
 ### Requirements
-PostgreSQL database (Postgres.app for Mac is very convenient)
+PostgreSQL database (Postgres.app is good for local testing on a Mac)
 
 ### Setup
 ~~~~ 
@@ -19,7 +19,15 @@ db:migrate:all
 ~~~~
 
 ### Notable
-Edit config/config.json and lib/constants
+Edit config/config.json to configure database and email settings
+Edit app name etc. in lib/constants.js
+Create a credentials.json file in the config folder like so:
+~~~~
+{
+    "cookieSecret": "your secret"
+    "sessionSecret": "your secret",
+}
+~~~~
 
 ### Running
 ~~~~
