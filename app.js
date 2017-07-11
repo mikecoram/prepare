@@ -1,6 +1,9 @@
 // Enviroment config (load options from .env file)
 require('dotenv').config();
 
+// Credentials
+var credentials = require('./config/credentials');
+
 // Models
 var models = require('./models');
 
@@ -33,7 +36,7 @@ app.use(bodyParser.json());
 // Session
 var session = require('express-session');
 app.use(session({
-  secret: 'super',
+  secret: credentials.sessionSecret,
   resave: true,
   saveUninitialized: true
 }));
@@ -46,7 +49,7 @@ require('./lib/passport')(passport, models.User);
 
 // Cookies
 var cookieParser = require('cookie-parser');
-app.use(cookieParser('keyboard cat'));
+app.use(cookieParser(credentials.cookieSecret));
 
 // Flash
 var flash = require('express-flash');
