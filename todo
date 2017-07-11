@@ -2,8 +2,6 @@ Move FROM email address from lib/email.js to config or static globals
 Static globals?
 Move app name to static globals?
 Re-organize code
-    examine other express applications
-    sort out routes.js, what to do with controllers / handlers
     seperate app into a seperate folder? (leaving db in root)
     seperate client-side folder?
 Add password recovery
