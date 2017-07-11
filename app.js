@@ -15,8 +15,11 @@ var app = express();
 app.locals.appTitle = 'Boilerplate';
 
 // Handlebars view engine
-app.engine('handlebars', handlebars({defaultLayout:'main'}));
-app.set('view engine', 'handlebars');
+app.engine('.hbs', handlebars({
+    defaultLayout:'main', 
+    extname:'.hbs'
+}));
+app.set('view engine', '.hbs');
 
 // Serve static files
 app.use(express.static('public'));
@@ -60,7 +63,6 @@ app.use(function (err, req, res, next) {
     var status = err.status || 500;
     res.status(status);
     res.render('error', {
-        layout: false,
         status: status,
         message: err.message,
         error: app.get('env') === 'development' ? err : ''
