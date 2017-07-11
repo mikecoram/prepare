@@ -1,9 +1,3 @@
-Move FROM email address from lib/email.js to config or static globals
-Static globals?
-Move app name to static globals?
-Re-organize code
-    seperate app into a seperate folder? (leaving db in root)
-    seperate client-side folder?
 Add password recovery
     Generate token
     Send password recovery email with token

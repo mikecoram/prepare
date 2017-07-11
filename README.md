@@ -18,6 +18,9 @@ Set up a postgreSQL database and then edit config/config.json.
 db:migrate:all
 ~~~~
 
+### Notable
+Edit config/config.json and lib/constants
+
 ### Running
 ~~~~
 npm start
