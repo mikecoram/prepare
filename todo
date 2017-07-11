@@ -1,7 +1,6 @@
 Move FROM email address from lib/email.js to config
 Use '.hbs' extension instead of .handlebars
 Add password recovery
-    Set up gmail account to send from
     Generate token
     Send password recovery email with token
     Add password recovery route
