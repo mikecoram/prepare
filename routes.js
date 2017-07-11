@@ -13,12 +13,12 @@ function redirectToDashboard(req, res, next) {
     res.redirect('/dashboard');
 }
 
+const main = require('./handlers/main');
 const auth = require('./handlers/auth');
 
 module.exports = function (app, passport) {
-    app.get('/', [redirectToDashboard], function (req, res) {
-        res.render('home');
-    });
+    app.get('/', [redirectToDashboard], main.home);
+    app.get('/dashboard', [isLoggedIn], main.dashboard);
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/dashboard',
@@ -32,18 +32,12 @@ module.exports = function (app, passport) {
         failureFlash: true
     }));
 
-    app.get('/signup', [redirectToDashboard], auth.signup);
-    app.get('/login', [redirectToDashboard], auth.login);
-    app.get('/logout', auth.logout);
-    app.get('/forgottenpassword', [redirectToDashboard], auth.forgottenpassword);
-
     app.post('/forgottenpassword', function (req, res) {
         
     });
 
-    app.get('/dashboard', [isLoggedIn], function (req, res) {
-        res.render('dashboard', {
-            authorised: req.user != undefined
-        });
-    });
+    app.get('/signup', [redirectToDashboard], auth.signup);
+    app.get('/login', [redirectToDashboard], auth.login);
+    app.get('/logout', auth.logout);
+    app.get('/forgottenpassword', [redirectToDashboard], auth.forgottenpassword);
 };
