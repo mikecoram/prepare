@@ -5,7 +5,8 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login');
 }
 
-function redirectToAuthArea(req, res, next) {
+// If user is authenticated, redirect them if they attempt to view /signup or /signin
+function redirectToDashboard(req, res, next) {
     if (!req.isAuthenticated()) {
         return next();
     }
@@ -13,11 +14,11 @@ function redirectToAuthArea(req, res, next) {
 }
 
 module.exports = function (app, passport) {
-    app.get('/', [redirectToAuthArea], function (req, res) {
+    app.get('/', [redirectToDashboard], function (req, res) {
         res.render('home');
     });
 
-    app.get('/signup', [redirectToAuthArea], function (req, res) {
+    app.get('/signup', [redirectToDashboard], function (req, res) {
         res.render('signup', {errorMessage: req.flash('error')});
     });
 
@@ -27,7 +28,7 @@ module.exports = function (app, passport) {
         failureFlash: true
     }));
 
-    app.get('/login', [redirectToAuthArea], function (req, res) {
+    app.get('/login', [redirectToDashboard], function (req, res) {
         res.render('login', {errorMessage: req.flash('error')});
     });
 
@@ -43,7 +44,7 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.get('/forgottenpassword', [redirectToAuthArea], function (req, res) {
+    app.get('/forgottenpassword', [redirectToDashboard], function (req, res) {
         res.render('forgottenpassword');
     });
 
