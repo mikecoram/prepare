@@ -13,13 +13,11 @@ function redirectToDashboard(req, res, next) {
     res.redirect('/dashboard');
 }
 
+const auth = require('./handlers/auth');
+
 module.exports = function (app, passport) {
     app.get('/', [redirectToDashboard], function (req, res) {
         res.render('home');
-    });
-
-    app.get('/signup', [redirectToDashboard], function (req, res) {
-        res.render('signup', {errorMessage: req.flash('error')});
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
@@ -28,25 +26,16 @@ module.exports = function (app, passport) {
         failureFlash: true
     }));
 
-    app.get('/login', [redirectToDashboard], function (req, res) {
-        res.render('login', {errorMessage: req.flash('error')});
-    });
-
     app.post('/login', passport.authenticate('local-signin', {
         successRedirect: '/dashboard',
         failureRedirect: '/login',
         failureFlash: true
     }));
 
-    app.get('/logout', function (req, res) {
-        req.session.destroy(function (err) {
-            res.redirect('/');
-        });
-    });
-
-    app.get('/forgottenpassword', [redirectToDashboard], function (req, res) {
-        res.render('forgottenpassword');
-    });
+    app.get('/signup', [redirectToDashboard], auth.signup);
+    app.get('/login', [redirectToDashboard], auth.login);
+    app.get('/logout', auth.logout);
+    app.get('/forgottenpassword', [redirectToDashboard], auth.forgottenpassword);
 
     app.post('/forgottenpassword', function (req, res) {
         
