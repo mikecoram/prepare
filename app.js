@@ -1,11 +1,16 @@
+// Enviroment config (load options from .env file)
 require('dotenv').config();
 
+// Models
 var models = require('./models');
 
+// Init express app
 var express = require('express');
 var app = express();
 
-app.locals.appTitle = 'Boilerplate';
+// Constants
+var constants = require('./lib/constants');
+constants.populateLocals(app);
 
 // Handlebars view engine
 var handlebars = require('express-handlebars');
