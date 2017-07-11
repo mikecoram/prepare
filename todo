@@ -1,3 +1,4 @@
+Use '.hbs' extension instead of .handlebars
 Add password recovery
     Set up gmail account to send from
     Generate token
@@ -5,7 +6,7 @@ Add password recovery
     Add password recovery route
     Check token has not expired and is active
     Check token matches email address
-    Change use password
+    Change user password
 Admin sub-url
 Admin page
 User table on admin page

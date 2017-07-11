@@ -4,14 +4,24 @@
     "password": "",
     "database": "mike",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "email": {
+      "host": "localhost",
+      "port": 250,
+      "secure": false
+    }
   },
   "test": {
     "username": "mike",
     "password": "",
     "database": "mike",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "email": {
+      "host": "localhost",
+      "port": 250,
+      "secure": false
+    }
   },
   "production": {
     "username": "root",
