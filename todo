@@ -1,3 +1,4 @@
+Put config/passport.js in lib ?
 Move FROM email address from lib/email.js to config or static globals
 Static globals?
 Move app name to static globals?

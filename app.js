@@ -40,7 +40,7 @@ app.use(session({
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport')(passport, models.User);
+require('./lib/passport')(passport, models.User);
 
 // Cookies
 app.use(cookieParser('keyboard cat'));
