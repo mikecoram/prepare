@@ -1,4 +1,8 @@
+Welcome message on completing sign up
+Change confusing User/user references in lib/passport.js
+Controllers/auth.js - can I require passport instead of having it passed through?
 Add password recovery
+    Add password token table to db
     Generate token
     Send password recovery email with token
     Add password recovery route

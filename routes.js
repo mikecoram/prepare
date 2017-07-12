@@ -26,4 +26,5 @@ module.exports = function (app, passport) {
     app.get('/login', [redirectToDashboard], authHandler.login);
     app.get('/logout', authHandler.logout);
     app.get('/forgottenpassword', [redirectToDashboard], authHandler.forgottenpassword);
+    app.get('/resetpassword/:token', authHandler.resetPassword);
 };

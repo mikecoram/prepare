@@ -15,3 +15,10 @@ exports.logout = function (req, res) {
 exports.forgottenpassword = function (req, res) {
     res.render('forgottenpassword');
 }
+
+exports.resetPassword = function (req, res) {
+    res.render('resetpassword', {
+        errorMessage: req.flash('error'),
+        info: req.flash('info')
+    });
+}
