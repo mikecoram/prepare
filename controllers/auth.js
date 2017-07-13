@@ -23,6 +23,7 @@ exports.redirectToDashboard = function (req, res, next) {
 exports.registerRoutes = function (app) {
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/dashboard',
+        successFlash: 'Welcome to ' + app.locals.AppTitle + '!',
         failureRedirect: '/signup',
         failureFlash: true
     }));
