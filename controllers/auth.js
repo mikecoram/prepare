@@ -1,9 +1,9 @@
+var passport = require('passport');
 var async = require('async');
 var User = require('../models').User;
 var PasswordReset = require('../models').PasswordReset;
 var emailHelper = require('../lib/email');
 var encryption = require('../lib/encryption');
-var passport = require('passport');
 
 exports.registerRoutes = function (app) {
     app.post('/signup', passport.authenticate('local-signup', {
