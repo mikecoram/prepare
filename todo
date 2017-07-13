@@ -1,6 +1,5 @@
 Clean up controllers/auth.js
 Welcome message on completing sign up
-Change confusing User/user references in lib/passport.js
 Admin sub-url
 Admin page
 User table on admin page

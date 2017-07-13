@@ -45,7 +45,7 @@ app.use(session({
 var passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
-require('./lib/passport')(passport);
+require('./lib/passport')();
 
 // Cookies
 var cookieParser = require('cookie-parser');
