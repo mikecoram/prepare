@@ -13,13 +13,13 @@ function redirectToDashboard(req, res, next) {
     res.redirect('/dashboard');
 }
 
-module.exports = function (app, passport) {
+module.exports = function (app) {
     const mainHandler = require('./handlers/main');
     app.get('/', [redirectToDashboard], mainHandler.home);
     app.get('/dashboard', [isLoggedIn], mainHandler.dashboard);
 
     const authController = require('./controllers/auth');
-    authController.registerRoutes(app, passport);
+    authController.registerRoutes(app);
 
     const authHandler = require('./handlers/auth');
     app.get('/signup', [redirectToDashboard], authHandler.signup);

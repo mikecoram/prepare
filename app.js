@@ -57,7 +57,7 @@ app.use(flash());
 
 // Routes
 var routes = require('./routes.js');
-routes(app, passport);
+routes(app);
 
 // Error handling
 app.use(function (req, res, next) {

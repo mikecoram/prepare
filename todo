@@ -1,8 +1,6 @@
+Clean up controllers/auth.js
 Welcome message on completing sign up
 Change confusing User/user references in lib/passport.js
-Controllers/auth.js - can I require passport instead of having it passed through?
-Add password recovery
-    Show flash messages / errors
 Admin sub-url
 Admin page
 User table on admin page
