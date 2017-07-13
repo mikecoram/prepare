@@ -1,5 +1,6 @@
 module.exports = function (app) {
     var authController = require('./controllers/auth');
+    // Auth middleware
     var isLoggedIn = authController.isLoggedIn;
     var redirectToDashboard = authController.redirectToDashboard;
 
