@@ -1,9 +1,13 @@
 exports.signup = function (req, res) {
-    res.render('signup', {errorMessage: req.flash('error')});
+    res.render('signup', {
+        error: req.flash('error')
+    });
 };
 
 exports.login = function (req, res) {
-    res.render('login', {errorMessage: req.flash('error')});
+    res.render('login', {
+        error: req.flash('error')
+    });
 };
 
 exports.logout = function (req, res) {
@@ -13,12 +17,15 @@ exports.logout = function (req, res) {
 }
 
 exports.forgottenpassword = function (req, res) {
-    res.render('forgottenpassword');
+    res.render('forgottenpassword', {
+        info: req.flash('info'),
+        error: req.flash('error')
+    });
 }
 
 exports.resetPassword = function (req, res) {
     res.render('resetpassword', {
-        errorMessage: req.flash('error'),
-        info: req.flash('info')
+        success: req.flash('success'),
+        error: req.flash('error')
     });
 }

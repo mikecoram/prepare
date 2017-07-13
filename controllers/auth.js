@@ -75,7 +75,7 @@ exports.registerRoutes = function (app, passport) {
                     }
                 }
                 emailHelper.sendMail(mailOptions, function (err) {
-                    req.flash('info', 'An email has been sent to ' + user.email + ' with further instructions.');
+                    req.flash('info', 'An email has been sent to ' + user.emailAddress + ' with further instructions.');
                     done(err, 'done');
                 });
             }
@@ -123,7 +123,7 @@ exports.registerRoutes = function (app, passport) {
                         }
                     });
 
-                    req.flash('info', 'Your password has been updated.');
+                    req.flash('success', 'Your password has been updated.');
                     return res.redirect('back');
                 });
             });
