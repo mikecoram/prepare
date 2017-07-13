@@ -3,6 +3,13 @@ var passwordRegex = /^.{6,}$/;
 
 var validation = {};
 
+validation.getErrorText = function (result) {
+    if (result == true) {
+        return '';
+    }
+    return result + '\n';
+}
+
 validation.isValidEmailAddress = function (emailAddress) {
     if (!emailRegex.test(emailAddress)) {
         return 'Please enter a valid email address.';

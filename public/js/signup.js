@@ -1,19 +1,15 @@
-function processResult (error, result) {
-    if (result != true) {
-        error += result + '\n';
-    }
-}
-
 function validateForm () {
     var error = '';
     var result;
 
     result = validation.isValidEmailAddress($('#emailAddress').val());
-    processResult(error, result);
+    error += validation.getErrorText(result);
+
     result = validation.isValidPassword($('#password').val());
-    processResult(error, result);
-    result = validationn.passwordsMatch($('#password').val(), $('#confirmPassword').val());
-    processResult(error, result);
+    error += validation.getErrorText(result);
+    
+    result = validation.passwordsMatch($('#password').val(), $('#confirmPassword').val());
+    error += validation.getErrorText(result);
 
     if (error.length > 0) {
         $('#localError').text(error);
