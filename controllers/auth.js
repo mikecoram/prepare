@@ -5,6 +5,21 @@ var PasswordReset = require('../models').PasswordReset;
 var emailHelper = require('../lib/email');
 var encryption = require('../lib/encryption');
 
+exports.isLoggedIn = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
+
+// If user is authenticated, redirect them to the user area
+exports.redirectToDashboard = function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/dashboard');
+}
+
 exports.registerRoutes = function (app) {
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/dashboard',
