@@ -1,4 +1,4 @@
-module.exports = function (app) {
+exports.main = function (app) {
     var authController = require('./controllers/auth');
     // Auth middleware
     var isLoggedIn = authController.isLoggedIn;
@@ -17,3 +17,10 @@ module.exports = function (app) {
     app.get('/forgottenpassword', [redirectToDashboard], authHandler.forgottenpassword);
     app.get('/resetpassword/:token', authHandler.resetPassword);
 };
+
+exports.admin = function (admin) {
+    admin.get('/', function (req, res) {
+        console.log('ffds')
+        res.render('admin/home')
+    });
+}

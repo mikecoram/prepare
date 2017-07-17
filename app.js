@@ -57,7 +57,11 @@ app.use(flash());
 
 // Routes
 var routes = require('./routes.js');
-routes(app);
+var admin = express.Router();
+var subdomain = require('express-subdomain');
+app.use(subdomain('admin', admin));
+routes.admin(admin);
+routes.main(app);
 
 // Error handling
 app.use(function (req, res, next) {

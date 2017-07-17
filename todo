@@ -1,5 +1,5 @@
-Admin sub-url
 Admin page
+Restrict admin page (add admin user in seed?)
 User table on admin page
 Allow admin to modify users
 User permissions

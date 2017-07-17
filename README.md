@@ -17,6 +17,12 @@ Set up a postgreSQL database and then edit config/config.json.
 ~~~~
 db:migrate:all
 ~~~~
+Add domain and subdomain to hosts file (etc/hosts)
+~~~~
+127.0.0.1       testapp.dev
+127.0.0.1       admin.testapp.dev
+127.0.0.1       api.testapp.dev
+~~~~
 
 ### Notable
 Edit config/config.json to configure database and email settings
