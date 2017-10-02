@@ -20,7 +20,8 @@ exports.main = function (app) {
 
 exports.admin = function (admin) {
     admin.get('/', function (req, res) {
-        console.log('ffds')
-        res.render('admin/home')
+        res.render('admin/home', {
+            layout: 'admin'
+        });
     });
 }
