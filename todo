@@ -11,9 +11,3 @@ Add more testing
     Page tests
     Auth tests
     App tests?
-
-Add gulp
-    css preproccesor: less / sass etc.
-    js bundling
-    js minification
-    js obfuscation
