@@ -1,5 +1,6 @@
 function _isAdmin(user) {
-    return true;
+    var ROLES = require('../const').ROLES;
+    return user.role === ROLES.ADMIN;
 }
 
 exports.isAdmin = function (req, res, next) {
