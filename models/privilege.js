@@ -1,16 +1,20 @@
-(function () {'use strict';})();
-module.exports = function(sequelize, Sequelize) {
+'use strict';
+module.exports = function(sequelize, DataTypes) {
   var Privilege = sequelize.define('Privilege', {
-  id: {
+    id: {
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },    
-    description: {
-        type: Sequelize.STRING,
+    name: DataTypes.STRING,
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE
     },
-    createdAt: Sequelize.DATE,
-    updatedAt: Sequelize.DATE
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    }
   }, {
     classMethods: {
       associate: function(models) {

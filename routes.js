@@ -16,12 +16,18 @@ exports.main = function (app) {
     app.get('/logout', authHandler.logout);
     app.get('/forgottenpassword', [redirectToDashboard], authHandler.forgottenpassword);
     app.get('/resetpassword/:token', authHandler.resetPassword);
-};
 
-exports.admin = function (admin) {
-    admin.get('/', function (req, res) {
-        res.render('admin/home', {
-            layout: 'admin'
+    var User = require('./models').User;
+    var AdminController = require('./controllers/admin');
+
+    app.get('/admin', [AdminController.isAdmin], function (req, res) {
+        User.findAll({
+            attributes: ['emailAddress', 'status', 'createdAt', 'updatedAt']
+        }).then(function (users) {
+            res.render('admin/home', {
+                layout: 'admin',
+                users: users
+            });    
         });
     });
-}
+};
