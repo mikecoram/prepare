@@ -27,7 +27,7 @@ Add domain and subdomain to hosts file (etc/hosts)
 ### Sequelize
 Creating a new model (generates model and migration):
 ~~~~
-sequelize model:create --name Name --attributes "attr:type"
+sequelize model:create --name Name --attributes "attr:type, attr2:type"
 ~~~~
 
 Apply all migrations

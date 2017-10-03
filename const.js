@@ -1,0 +1,4 @@
+exports.ROLES = {
+    ADMIN,
+    USER
+}
