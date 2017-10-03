@@ -1,27 +1,27 @@
 (function () {'use strict';})();
-module.exports = function(sequelize, Sequelize) {
+module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
   id: {
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },    
     emailAddress: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         validate: {
             isEmail: true
         }
     },
     password: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     status: {
-        type: Sequelize.ENUM('active', 'inactive'),
+        type: DataTypes.ENUM('active', 'inactive'),
         defaultValue: 'active'
     },
-    createdAt: Sequelize.DATE,
-    updatedAt: Sequelize.DATE
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     classMethods: {
       associate: function(models) {
