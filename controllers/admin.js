@@ -1,4 +1,4 @@
-var ROLES = require('../const').ROLES;
+var ROLES = require('../constants').ROLES;
 
 function _isAdmin(user) {
     return user.role === ROLES.ADMIN;

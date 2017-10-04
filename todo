@@ -1,6 +1,6 @@
-Where to put roles array/enum?
 Add role to user model
 Add details about declaring a foreign key in README.md
+Add details on adding a new role to README.md
 Add seeder that creates privileges and admin role
 Restrict admin page (add admin user in seed?)
 User table on admin page
