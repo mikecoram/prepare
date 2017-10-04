@@ -35,6 +35,8 @@ module.exports = {
       return queryInterface.bulkDelete('Person', null, {});
     */
 
-    return queryInterface.bulkDelete('Users', [ {emailAddress:'admin@admin.com'}], {});
+    return queryInterface.bulkDelete('Users', [{
+      emailAddress:'admin@admin.com'
+    }], {});
   }
 };
