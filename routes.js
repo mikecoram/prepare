@@ -17,17 +17,9 @@ exports.main = function (app) {
     app.get('/forgottenpassword', [redirectToDashboard], authHandler.forgottenpassword);
     app.get('/resetpassword/:token', authHandler.resetPassword);
 
-    var User = require('./models').User;
     var AdminController = require('./controllers/admin');
+    // Admin middleware
+    var isAdmin = AdminController.isAdmin;
 
-    app.get('/admin', [AdminController.isAdmin], function (req, res) {
-        User.findAll({
-            attributes: ['emailAddress', 'status', 'createdAt', 'updatedAt']
-        }).then(function (users) {
-            res.render('admin/home', {
-                layout: 'admin',
-                users: users
-            });    
-        });
-    });
+    app.get('/admin', [isAdmin], require('./handlers/admin').dashboard);
 };
