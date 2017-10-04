@@ -12,6 +12,18 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
+
+    var hash = require('../lib/encryption').generatePasswordHash;
+    var consts = require('../constants');
+
+    return queryInterface.bulkInsert('Users', [{
+      emailAddress: 'admin@admin.com',
+      password: hash('password1'),
+      status: consts.USER_STATUS.ACTIVE,
+      role: consts.USER_ROLE.ADMIN,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }], {});
   },
 
   down: function (queryInterface, Sequelize) {
@@ -22,5 +34,7 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('Person', null, {});
     */
+
+    return queryInterface.bulkDelete('Users', [ {emailAddress:'admin@admin.com'}], {});
   }
 };
