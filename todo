@@ -1,4 +1,3 @@
-Restrict admin page
 User table on admin page
 Allow admin to delete users and set role / status
 Pull form buttons to the right without breaking error message formatting
