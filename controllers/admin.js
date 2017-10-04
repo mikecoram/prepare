@@ -1,7 +1,7 @@
-var ROLES = require('../constants').USER_ROLE;
+var USER_ROLE = require('../constants').USER_ROLE;
 
 function _isAdmin(user) {
-    return user != undefined && user.role === ROLES.ADMIN;
+    return user != undefined && user.role === USER_ROLE.ADMIN;
 }
 
 exports.isAdmin = function (req, res, next) {
