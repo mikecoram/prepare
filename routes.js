@@ -17,9 +17,9 @@ exports.main = function (app) {
     app.get('/forgottenpassword', [redirectToDashboard], authHandler.forgottenpassword);
     app.get('/resetpassword/:token', authHandler.resetPassword);
 
-    var AdminController = require('./controllers/admin');
+    var adminController = require('./controllers/admin');
     // Admin middleware
-    var isAdmin = AdminController.isAdmin;
+    var isAdmin = adminController.isAdmin;
 
     app.get('/admin', [isAdmin], require('./handlers/admin').dashboard);
 };
