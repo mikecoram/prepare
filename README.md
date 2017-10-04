@@ -14,9 +14,11 @@ npm install
 npm install -g sequelize-cli mocha
 ~~~~
 Set up a postgreSQL database and then edit config/config.json to point to the database.
+Change the admin details in 'seeders/*-init.js'
 Initialise the database:
 ~~~~
 sequelize db:migrate
+sequelize db:seed:all
 ~~~~
 
 ### Sequelize
@@ -33,6 +35,21 @@ sequelize db:migrate
 Undo last migration
 ~~~~
 sequelize db:migrate:undo
+~~~~
+
+Apply all seeders
+~~~~
+sequelize db:seed:all
+~~~~
+
+Undo all seeders
+~~~~
+sequelize db:seed:undo:all
+~~~~
+
+Create new seeder
+~~~~
+sequelize db:seed:create
 ~~~~
 
 ### Notable
