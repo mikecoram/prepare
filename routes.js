@@ -17,6 +17,9 @@ exports.main = function (app) {
     app.get('/forgottenpassword', [redirectToDashboard], authHandler.forgottenpassword);
     app.get('/resetpassword/:token', authHandler.resetPassword);
 
+    let quizHandler = require('./handlers/quiz');
+    app.get('/quiz', [isLoggedIn], quizHandler.quiz);
+
     var adminController = require('./controllers/admin');
     // Admin middleware
     var isAdmin = adminController.isAdmin;

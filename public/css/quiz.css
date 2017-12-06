@@ -1,0 +1,25 @@
+textarea {
+    resize:none;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+}
+
+.form-control:disabled {
+    cursor:default;
+}
+    
+.title-row {
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;    
+    margin-bottom:0.5em;
+}
+
+.question-row {
+    margin-bottom:1em;
+}
+
+.btn-next-question {
+    margin-right:0.7em;
+}
+
+.btn-exit-test {
+    margin-right:0.5em;    
+}

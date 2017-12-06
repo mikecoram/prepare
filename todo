@@ -1,10 +1,1 @@
-User table on admin page
-Allow admin to delete users and set role / status
-Pull form buttons to the right without breaking error message formatting
-
-Add more testing
-    Client-side validation
-    Server-side validation
-    Page tests
-    Auth tests
-    App tests?
+Rename lib/constants.js to locals.js (and change references)
