@@ -15,8 +15,8 @@ var express = require('express');
 var app = express();
 
 // Constants
-var constants = require(__base + '/lib/constants');
-constants.populateLocals(app);
+var locals = require(__base + '/lib/locals');
+locals.populateLocals(app);
 
 // Handlebars view engine
 var handlebars = require('express-handlebars');
