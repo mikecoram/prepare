@@ -1,18 +1,21 @@
+// Set base dir to allow for sensible require paths in nested modules
+global.__base = __dirname + '/';
+
 // Enviroment config (load options from .env file)
 require('dotenv').config();
 
 // Credentials
-var credentials = require('./config/credentials');
+var credentials = require(__base + '/config/credentials');
 
 // Models
-var models = require('./models');
+var models = require(__base + '/models');
 
 // Init express app
 var express = require('express');
 var app = express();
 
 // Constants
-var constants = require('./lib/constants');
+var constants = require(__base + '/lib/constants');
 constants.populateLocals(app);
 
 // Handlebars view engine
@@ -56,7 +59,7 @@ var flash = require('express-flash');
 app.use(flash());
 
 // Routes
-var routes = require('./routes.js');
+var routes = require(__base + '/routes.js');
 routes.main(app);
 
 // Error handling

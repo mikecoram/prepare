@@ -1,9 +1,9 @@
 var passport = require('passport');
 var async = require('async');
-var User = require('../models').User;
-var PasswordReset = require('../models').PasswordReset;
-var emailHelper = require('../lib/email');
-var encryption = require('../lib/encryption');
+var User = require(__base + '/models').User;
+var PasswordReset = require(__base + '/models').PasswordReset;
+var emailHelper = require(__base + '/lib/email');
+var encryption = require(__base + '/lib/encryption');
 
 exports.isLoggedIn = function (req, res, next) {
     if (req.isAuthenticated()) {

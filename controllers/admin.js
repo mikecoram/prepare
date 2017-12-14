@@ -1,4 +1,4 @@
-var USER_ROLE = require('../constants').USER_ROLE;
+var USER_ROLE = require(__base + '/constants').USER_ROLE;
 
 function _isAdmin(user) {
     return user != undefined && user.role === USER_ROLE.ADMIN;

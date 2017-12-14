@@ -1,5 +1,5 @@
 exports.dashboard = function (req, res) {
-    var User = require('../models').User;
+    var User = require(__base + '/models').User;
 
     User.findAll({
         attributes: ['emailAddress', 'status', 'createdAt', 'updatedAt']
