@@ -59,7 +59,7 @@ sequelize seed:create
 
 ### Notable
 Edit config/config.json to configure database and email settings
-Edit app name etc. in lib/constants.js
+Edit app name etc. in lib/locals.js
 Create a credentials.json file in the config folder like so:
 ~~~~
 {
@@ -67,7 +67,7 @@ Create a credentials.json file in the config folder like so:
     "sessionSecret": "your session secret",
 }
 ~~~~
-Constants are stored in Constants.js including User roles enum
+Constants are stored in constants.js including User roles enum
 
 ### Running
 ~~~~
