@@ -1,0 +1,5 @@
+{
+    "input": "print(3 + 7)",
+    "output": "10",
+    "position": 1
+}

@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      position: {
+      valuePosition: {
         type: Sequelize.INTEGER,
         allowNull: false
       },

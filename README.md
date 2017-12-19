@@ -37,6 +37,11 @@ Undo last migration
 sequelize db:migrate:undo
 ~~~~
 
+Undo all migrations
+~~~~
+sequelize db:migrate:undo:all
+~~~~
+
 Apply all seeders
 ~~~~
 sequelize db:seed:all
@@ -49,7 +54,7 @@ sequelize db:seed:undo:all
 
 Create new seeder
 ~~~~
-sequelize db:seed:create
+sequelize seed:create
 ~~~~
 
 ### Notable

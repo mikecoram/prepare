@@ -6,11 +6,11 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    afterExampleTemplateId: {
+    sectionTemplateId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    sectionTemplateId: {
+    position: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -33,9 +33,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-
-  var AfterExampleTemplate = require('./exampletemplate')(sequelize, DataTypes);
-  QuestionTemplate.hasOne(AfterExampleTemplate, {foreignKey: 'afterExampleTemplateId', targetKey: 'id'});
 
   var SectionTemplate = require('./sectiontemplate')(sequelize, DataTypes);
   QuestionTemplate.hasOne(SectionTemplate, {foreignKey: 'sectionTemplateId', targetKey: 'id'})

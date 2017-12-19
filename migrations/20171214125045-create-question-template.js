@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      afterExampleTemplateId: {
+      position: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
