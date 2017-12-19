@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const TEMPLATE_DIR = __dirname + '/templates';
+const TEMPLATE_DIR = __dirname + '/section-templates';
 
 exports.read = readQuizTemplateData;
 
