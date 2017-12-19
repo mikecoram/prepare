@@ -1,11 +1,11 @@
 const { SectionTemplate, ExampleTemplate, QuestionTemplate, ValueGenerator } = require('../models');
 
-exports.seedTemplates = seedTemplates;
+exports.seed = seed;
 exports.createRecord = createRecord;
 exports.createManyRecords = createManyRecords;
 
 // Seed all the templates for a section
-function seedTemplates(sectionTemplate, exampleTemplates, questionTemplates, valueGenerators) {
+function seed(sectionTemplate, exampleTemplates, questionTemplates, valueGenerators) {
   return new Promise((resolve, reject) => {
     createRecord(SectionTemplate, sectionTemplate).then((st) => {
       createManyRecords(ExampleTemplate, exampleTemplates, [{

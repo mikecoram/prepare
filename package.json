@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha",
-    "start": "node app.js"
+    "start": "node app.js",
+    "generate-templates": "node ./quiz-templating/template-generator.js"
   },
   "repository": {
     "type": "git",
