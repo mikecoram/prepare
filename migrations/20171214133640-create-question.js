@@ -18,17 +18,13 @@ module.exports = {
       },
       userOutput: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       correct: {
         type: Sequelize.BOOLEAN,
         allowNull: true
       },
       sectionId: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      afterExampleId: {
         type: Sequelize.INTEGER,
         allowNull: false
       },

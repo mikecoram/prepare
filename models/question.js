@@ -16,17 +16,13 @@ module.exports = function(sequelize, DataTypes) {
     },
     userOutput: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     correct: {
       type: DataTypes.BOOLEAN,
       allowNull: true
     },
     sectionId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    afterExampleId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },

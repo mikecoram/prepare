@@ -6,6 +6,10 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
+    sectionTemplateId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     number: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -28,6 +32,9 @@ module.exports = function(sequelize, DataTypes) {
 
   var Quiz = require('./quiz')(sequelize, DataTypes);
   Section.hasOne(Quiz, {foreignKey: 'quizId', targetKey: 'id'});
+
+  var SectionTemplate = require('./sectiontemplate')(sequelize, DataTypes);
+  Section.hasOne(SectionTemplate, {foreignKey: 'sectionTemplateId', targetKey: 'id'});
 
   return Section;
 };
