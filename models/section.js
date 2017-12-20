@@ -34,7 +34,12 @@ module.exports = function(sequelize, DataTypes) {
     Section.hasMany(models.Question, {
       foreignKey: 'sectionId',
       as: 'questions'
-    })
+    });
+
+    Section.hasMany(models.Example, {
+      foreignKey: 'sectionId',
+      as: 'examples'
+    });
   }
 
   return Section;
