@@ -18,7 +18,13 @@ module.exports = {
       },
       quizId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Quizzes',
+          key: 'id',
+          as: 'quiz'
+        }
       },
       sectionTemplateId: {
         type: Sequelize.INTEGER,

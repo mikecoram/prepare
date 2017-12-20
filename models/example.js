@@ -14,20 +14,15 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     }
-  }, {
-    classMethods: {
-      associate: function(models) {
-      }
-    }
   });
 
-  let ExampleTemplate = require('./exampletemplate')(sequelize, DataTypes);
-
-  Example.belongsTo(ExampleTemplate, {
-    foreignKey: 'exampleTemplateId', 
-    targetKey: 'id', 
-    as: 'exampleTemplate',
-  });
+  Example.associate = function (models) {
+    Example.belongsTo(models.ExampleTemplate, {
+      foreignKey: 'exampleTemplateId', 
+      onDelete: 'CASCADE',
+      as: 'exampleTemplate'
+    });
+  }
 
   return Example;
 };

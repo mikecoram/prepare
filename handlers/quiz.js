@@ -1,3 +1,5 @@
+const { Quiz, Section, Question, Example, ExampleTemplate } = require('../models/');
+
 exports.quiz = function(req, res) {
     getUserQuiz(req.user).then((quiz) => {
         if (quiz) {
@@ -13,9 +15,18 @@ exports.quiz = function(req, res) {
 
 exports.uploadAnswers = function(req, res) {
     let answers = req.body.answers;
+    let user = req.user;   
     
     // if user has unfinished quiz
-    
+    Quiz.find({
+        where: {
+            userId: user.id,
+            finishedOn: null
+        },
+        include: [{model: Section, as: 'section'}] 
+    }).then((quiz) => {
+        console.log(quiz)
+    });
 }
 
 exports.quizSection = function(req, res) {
@@ -81,8 +92,6 @@ function getUserQuiz(user) {
     });
 }
 
-const { Quiz, Section, Question, Example, ExampleTemplate } = require('../models/');
-
 function getSections(user, currentSectionNum) {
     return new Promise((resolve, reject) => {
         getUserQuiz(user).then((quiz) => {
@@ -123,7 +132,8 @@ function getSectionData(user, sectionNum) {
                 let seq = [
                     Example.findAll({
                         where: {sectionId: section.id}, 
-                        include: [{model: ExampleTemplate, as: 'exampleTemplate'}]}),
+                        include: [{model: ExampleTemplate, as: 'exampleTemplate'}]
+                    }),
                     Question.findAll({where: {sectionId: section.id}})
                 ];
 

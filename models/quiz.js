@@ -26,13 +26,13 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        Quiz.hasMany(models.Section, {
+          foreignKey: 'quizId',
+          as: 'sections'
+        });
       }
     }
   });
-
-  var User = require('./user')(sequelize, DataTypes);
-  Quiz.hasOne(User, {foreignKey: 'userId', targetKey: 'id'});
 
   return Quiz;
 };

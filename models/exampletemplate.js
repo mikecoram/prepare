@@ -22,16 +22,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     }
-  }, {
-    classMethods: {
-      associate: function(models) {
-        ExampleTemplate.hasMany(models.Example, {
-          foreignKey: 'exampleTemplateId',
-          as: 'examples'
-        });
-      }
-    }
   });
+
+  ExampleTemplate.associate = function(models) {
+    ExampleTemplate.hasMany(models.Example, {
+      foreignKey: 'exampleTemplateId',
+      as: 'examples'
+    });
+  }
 
   return ExampleTemplate;
 };
