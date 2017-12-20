@@ -11,6 +11,13 @@ exports.quiz = function(req, res) {
     });
 }
 
+exports.uploadAnswers = function(req, res) {
+    let answers = req.body.answers;
+    
+    // if user has unfinished quiz
+    
+}
+
 exports.quizSection = function(req, res) {
     getSectionData(req.user, req.params.sectionNum).then((sectionData) => {
         getSections(req.user, req.params.sectionNum).then((sections) => {
@@ -23,7 +30,7 @@ exports.quizSection = function(req, res) {
                 showPreviousBtn: req.params.sectionNum != sections[0].number,
                 showNextBtn: req.params.sectionNum != sections[sections.length - 1].number,
                 previousSectionNum: req.params.sectionNum - 1,
-                nextSectionNum: req.params.sectionNum + 1
+                nextSectionNum: req.params.sectionNum + 1,
             });
         });
     });
