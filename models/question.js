@@ -38,8 +38,5 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  var AfterExample = require('./example')(sequelize, DataTypes);
-  Question.hasOne(AfterExample, {foreignKey: 'afterExampleId', targetKey: 'id'});
-
   return Question;
 };
