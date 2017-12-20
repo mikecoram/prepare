@@ -8,7 +8,16 @@
         </div>
         <div class="col-md-6">
             <button type="button" class="pull-right btn btn-success btn-lg btn-next-question">Next Section</button>
-            <button type="button" class="pull-right btn btn-primary btn-lg btn-exit-test">Exit</button>   
+            <button type="button" class="pull-right btn btn-primary btn-lg btn-exit-test">Exit</button>
+            <nav aria-label="Quiz navigation" class="pull-right">
+                <ul class="pagination section-paginator">
+                    {{#each sections}}
+                        <li {{#if current}}class="active"{{/if}}>
+                            <a href="#">{{number}}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </nav>
         </div>
     </div>        
 
@@ -27,7 +36,9 @@
                 <textarea class="form-control" disabled rows="7">{{input}}</textarea>
             </div>
             <div class="col-md-6">
-                <textarea class="form-control" {{#if example}}disabled{{/if}} rows="7">{{output}}</textarea>
+                <textarea id="{{#unless example}}question-{{id}}{{/unless}}" 
+                        class="form-control" {{#if example}}disabled{{/if}} 
+                        rows="7">{{output}}</textarea>
             </div>
         </div>
     {{/each}}

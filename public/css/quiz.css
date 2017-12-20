@@ -23,3 +23,8 @@ textarea {
 .btn-exit-test {
     margin-right:0.5em;    
 }
+
+.section-paginator {
+    margin-top: 0.5em;
+    margin-right: 2em;
+}

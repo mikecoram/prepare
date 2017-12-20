@@ -1,31 +1,109 @@
-exports.quiz = function (req, res) {
-    res.render('quiz/quiz', {
-        authorised: req.user != undefined
+exports.quiz = function(req, res) {
+    getUserQuiz(req.user).then((quiz) => {
+        if (quiz) {
+            res.redirect('/quiz/section/' + getMostRecentSection(quiz));
+        }
+        else {
+            res.render('quiz/new-quiz', {
+                authorised: req.user != undefined
+            });
+        }
     });
 }
 
 exports.quizSection = function(req, res) {
     getSectionData(req.user, req.params.sectionNum).then((sectionData) => {
-        res.render('quiz/quiz-section', {
-            authorised: req.user != undefined,
-            sectionData: sectionData
+        getSections(req.user, req.params.sectionNum).then((sections) => {
+            console.log(req.params.sectionNum === sections[0].number);
+            res.render('quiz/quiz-section', {
+                authorised: req.user != undefined,
+                sections: sections,
+                sectionData: sectionData
+            });
+        });
+    });
+}
+
+const QuizGenerator = require(__base + '/lib/quiz-generator');
+
+exports.generateNewQuiz = function(req, res) {
+    userHasQuiz(user).then((hasQuiz) => {
+        if (!hasQuiz) {
+            QuizGenerator.generate({
+                userId: req.user.id,
+                graded: false,
+                difficulty: 0
+            }).then(() => {
+                res.redirect('/quiz');
+            });        
+        }
+    });
+}
+
+function getMostRecentSection(quiz) {
+    return 0;
+}
+
+function userHasQuiz(user) {
+    return new Promise((resolve, reject) => {
+        getUserQuiz(user).then((quiz) => {
+            resolve(quiz != undefined);
+        }, (err) => {
+            reject(err);
+        });
+    });
+}
+
+function getUserQuiz(user) {
+    return new Promise((resolve, reject) => {
+        Quiz.find({
+            where: {
+                userId: user.id,
+                finishedOn: null
+            }
+        }).then((quiz) => {
+            resolve(quiz);
+        }, (err) => {
+            reject(err);
         });
     });
 }
 
 const { Quiz, Section, Question, Example, ExampleTemplate } = require('../models/');
 
+function getSections(user, currentSectionNum) {
+    return new Promise((resolve, reject) => {
+        getUserQuiz(user).then((quiz) => {
+            Section.findAll({
+                where: {
+                    quizId: quiz.id
+                }
+            }).then((rawSections) => {
+                let sections = [];
+
+                rawSections.forEach((s) => {
+                    sections.push({
+                        number: s.number,
+                        current: s.number == currentSectionNum
+                    });
+                });
+
+                console.log(sections);
+
+                resolve(sections);
+            }, (err) => {
+                reject(err);
+            });
+        });
+    });
+}
+
 function getSectionData(user, sectionNum) {
     return new Promise((resolve, reject) => {
         // check user has quiz available
 
         // get user's current quiz
-        Quiz.find({
-            where: {
-                //userId: user.id,
-                finishedOn: null
-            }
-        }).then((quiz) => {
+        getUserQuiz(user).then((quiz) => {
             Section.find({
                 where: {
                     quizId: quiz.id,
