@@ -23,7 +23,7 @@ exports.uploadAnswers = function(req, res) {
             userId: user.id,
             finishedOn: null
         },
-        include: [{model: Section, as: 'section'}] 
+        include: [{model: Section, as: 'sections'}] 
     }).then((quiz) => {
         console.log(quiz)
     });

@@ -22,20 +22,15 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-  }, {
-    classMethods: {
-      associate: function(models) {
-      }
-    }
   });
 
-  const Quiz = require('./quiz')(sequelize, DataTypes);
-
-  Section.belongsTo(Quiz, {
-    foreignKey: 'quizId',
-    targetKey: 'id',
-    as: 'quiz'
-  });
+  Section.associate = function(models) {
+    Section.belongsTo(models.Quiz, {
+      foreignKey: 'quizId',
+      targetKey: 'id',
+      as: 'quiz'
+    });
+  }
 
   return Section;
 };

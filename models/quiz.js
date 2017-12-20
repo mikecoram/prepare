@@ -23,16 +23,14 @@ module.exports = function(sequelize, DataTypes) {
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
-  }, {
-    classMethods: {
-      associate: function(models) {
-        Quiz.hasMany(models.Section, {
-          foreignKey: 'quizId',
-          as: 'sections'
-        });
-      }
-    }
   });
+
+  Quiz.associate = function(models) {
+    Quiz.hasMany(models.Section, {
+      foreignKey: 'quizId',
+      as: 'sections'
+    });
+  }
 
   return Quiz;
 };
