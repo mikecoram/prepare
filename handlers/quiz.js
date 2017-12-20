@@ -14,7 +14,6 @@ exports.quiz = function(req, res) {
 exports.quizSection = function(req, res) {
     getSectionData(req.user, req.params.sectionNum).then((sectionData) => {
         getSections(req.user, req.params.sectionNum).then((sections) => {
-            console.log(req.params.sectionNum === sections[0].number);
             res.render('quiz/quiz-section', {
                 authorised: req.user != undefined,
                 sections: sections,
@@ -27,7 +26,7 @@ exports.quizSection = function(req, res) {
 const QuizGenerator = require(__base + '/lib/quiz-generator');
 
 exports.generateNewQuiz = function(req, res) {
-    userHasQuiz(user).then((hasQuiz) => {
+    userHasQuiz(req.user).then((hasQuiz) => {
         if (!hasQuiz) {
             QuizGenerator.generate({
                 userId: req.user.id,
@@ -87,8 +86,6 @@ function getSections(user, currentSectionNum) {
                         current: s.number == currentSectionNum
                     });
                 });
-
-                console.log(sections);
 
                 resolve(sections);
             }, (err) => {

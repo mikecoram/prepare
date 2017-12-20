@@ -1,0 +1,7 @@
+{
+    "questionPosition": 2,
+    "valuePosition": 2,
+    "type": "integer",
+    "min": 0,
+    "max": 11
+}
