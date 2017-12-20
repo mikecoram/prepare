@@ -22,6 +22,12 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: 'CASCADE',
       as: 'exampleTemplate'
     });
+
+    Example.belongsTo(models.Section, {
+      foreignKey: 'sectionId', 
+      onDelete: 'CASCADE',
+      as: 'section'
+    });
   }
 
   return Example;

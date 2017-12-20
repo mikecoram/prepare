@@ -20,7 +20,13 @@ module.exports = {
       },
       sectionId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Sections',
+          key: 'id',
+          as: 'section'
+        }
       },
       createdAt: {
         allowNull: false,

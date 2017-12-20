@@ -94,25 +94,27 @@ function getUserQuiz(user) {
 
 function getSections(user, currentSectionNum) {
     return new Promise((resolve, reject) => {
-        getUserQuiz(user).then((quiz) => {
-            Section.findAll({
-                where: {
-                    quizId: quiz.id
-                }
-            }).then((rawSections) => {
-                let sections = [];
+        Quiz.find({
+            where: {
+                userId: user.id,
+                finishedOn: null
+            },
+            include: [{
+                model: Section,
+                as: 'sections'
+            }]
+        }).then((quiz) => {
+            let rawSections = quiz.sections;
+            let sections = [];
 
-                rawSections.forEach((s) => {
-                    sections.push({
-                        number: s.number,
-                        current: s.number == currentSectionNum
-                    });
+            rawSections.forEach((s) => {
+                sections.push({
+                    number: s.number,
+                    current: s.number == currentSectionNum
                 });
-
-                resolve(sections.sort((a, b) => {return a.number - b.number;}));
-            }, (err) => {
-                reject(err);
             });
+
+            resolve(sections.sort((a, b) => {return a.number - b.number;}));
         });
     });
 }
@@ -122,27 +124,34 @@ function getSectionData(user, sectionNum) {
         // check user has quiz available
 
         // get user's current quiz
-        getUserQuiz(user).then((quiz) => {
-            Section.find({
+        Quiz.find({
+            where: {
+                userId: user.id,
+                finishedOn: null
+            },
+            include: [{
+                model: Section,
+                as: 'sections',
                 where: {
-                    quizId: quiz.id,
                     number: sectionNum
                 }
-            }).then((section) => {
-                let seq = [
-                    Example.findAll({
-                        where: {sectionId: section.id}, 
-                        include: [{model: ExampleTemplate, as: 'exampleTemplate'}]
-                    }),
-                    Question.findAll({where: {sectionId: section.id}})
-                ];
+            }]
+        }).then((quiz) => {
+            let section = quiz.sections[0];
 
-                Promise.all(seq).then((results) => {
-                    let examples = results[0];
-                    let questions = results[1];
+            let seq = [
+                Example.findAll({
+                    where: {sectionId: section.id}, 
+                    include: [{model: ExampleTemplate, as: 'exampleTemplate'}]
+                }),
+                Question.findAll({where: {sectionId: section.id}})
+            ];
 
-                    resolve(createSectionData(examples, questions));
-                });
+            Promise.all(seq).then((results) => {
+                let examples = results[0];
+                let questions = results[1];
+
+                resolve(createSectionData(examples, questions));
             });
         });
     });

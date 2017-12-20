@@ -30,13 +30,15 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: true
     }
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+  Question.associate = function(models) {
+    Question.belongsTo(models.Section, {
+      foreignKey: 'sectionId',
+      targetKey: 'id',
+      as: 'section'
+    });
+  }
 
   return Question;
 };
