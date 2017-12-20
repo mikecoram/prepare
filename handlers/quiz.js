@@ -17,7 +17,13 @@ exports.quizSection = function(req, res) {
             res.render('quiz/quiz-section', {
                 authorised: req.user != undefined,
                 sections: sections,
-                sectionData: sectionData
+                sectionData: sectionData,
+                hidePreviousBtn: req.params.sectionNum == sections[0].number,
+                hideNextBtn: req.params.sectionNum == sections[sections.length - 1].number,
+                showPreviousBtn: req.params.sectionNum != sections[0].number,
+                showNextBtn: req.params.sectionNum != sections[sections.length - 1].number,
+                previousSectionNum: req.params.sectionNum - 1,
+                nextSectionNum: req.params.sectionNum + 1
             });
         });
     });
@@ -87,7 +93,7 @@ function getSections(user, currentSectionNum) {
                     });
                 });
 
-                resolve(sections);
+                resolve(sections.sort((a, b) => {return a.number - b.number;}));
             }, (err) => {
                 reject(err);
             });

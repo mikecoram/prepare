@@ -7,16 +7,29 @@
             <h2>Quiz</h2>
         </div>
         <div class="col-md-6">
-            <nav aria-label="Quiz navigation" class="pull-right">
-                <ul class="pagination section-paginator">
-                    {{#each sections}}
-                        <li {{#if current}}class="active"{{/if}}>
-                            <a href="/quiz/section/{{number}}">{{number}}</a>
+            <div class="row">
+                <h3 class="pull-right sections-header">Section</h3>
+            </div>
+            <div class="row">
+                <nav aria-label="Quiz navigation" class="pull-right">
+                    <ul class="pagination section-paginator">
+                        <li {{#if hidePreviousBtn}}class="disabled"{{/if}}>
+                            <a class="page-link" 
+                                {{#if showPreviousBtn}}href="/quiz/section/{{previousSectionNum}}"{{/if}}><span class="glyphicon glyphicon-chevron-left"></span></a>
                         </li>
-                    {{/each}}
-                </ul>
-            </nav>
-            <h3 class="pull-right sections-header">Section:</h3>
+                        {{#each sections}}
+                            <li {{#if current}}class="active"{{/if}}>
+                                <a href="/quiz/section/{{number}}">{{number}}</a>
+                            </li>
+                        {{/each}}
+                        <li {{#if hideNextBtn}}class="disabled"{{/if}}>
+                            <a class="page-link" 
+                                {{#if showNextBtn}}href="/quiz/section/{{nextSectionNum}}"{{/if}}><span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>        
 

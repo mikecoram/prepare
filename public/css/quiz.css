@@ -8,8 +8,8 @@ textarea {
 }
     
 .title-row {
-    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;    
-    margin-bottom:0.5em;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+    margin-bottom:0.2em;
 }
 
 .question-row {
@@ -25,11 +25,12 @@ textarea {
 }
 
 .section-paginator {
-    margin-top: 0.5em;
-    margin-right: 2em;
+    margin-top: 0.1em;
+    margin-right: .6em;
+    font-size:1.6em;
 }
 
 .sections-header {
-    margin-right:0.5em;
-    margin-top:0.4em;
+    margin-right:1.2em;
+    margin-top:0em;
 }
