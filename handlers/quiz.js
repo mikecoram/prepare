@@ -48,10 +48,14 @@ exports.uploadAnswers = function(req, res) {
                         id: q.id
                     },
                 }).then((result) => {
-                    
+                    res.status(200).send('Uploaded!');
+                }, (err) => {
+                    res.status(500).send('Failed to upload!');
                 });
             }
         });
+    }, (err) => {
+        res.status(400).send('Failed to upload!');
     });
 }
 
@@ -66,9 +70,9 @@ exports.quizSection = function(req, res) {
                 hideNextBtn: req.params.sectionNum == sections[sections.length - 1].number,
                 showPreviousBtn: req.params.sectionNum != sections[0].number,
                 showNextBtn: req.params.sectionNum != sections[sections.length - 1].number,
-                previousSectionNum: req.params.sectionNum - 1,
-                sectionNum: req.params.sectionNum,
-                nextSectionNum: req.params.sectionNum + 1,
+                previousSectionNum: Number.parseInt(req.params.sectionNum) - 1,
+                sectionNum: Number.parseInt(req.params.sectionNum),
+                nextSectionNum: Number.parseInt(req.params.sectionNum) + 1,
             });
         });
     });
