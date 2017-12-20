@@ -23,9 +23,35 @@ exports.uploadAnswers = function(req, res) {
             userId: user.id,
             finishedOn: null
         },
-        include: [{model: Section, as: 'sections'}] 
+        include: [{
+            model: Section, 
+            as: 'sections',
+            where: {
+                number: req.body.sectionNum
+            },
+            include: [{
+                model: Question,
+                as: 'questions'
+            }]
+        }]
     }).then((quiz) => {
-        console.log(quiz)
+        let questions = quiz.sections[0].questions;
+
+        questions.forEach((q) => {
+            let a = answers.find((a) => {return a.questionId == q.id});
+
+            if (a) {
+                Question.update({
+                    userOutput: a.userOutput
+                }, {
+                    where: {
+                        id: q.id
+                    },
+                }).then((result) => {
+                    
+                });
+            }
+        });
     });
 }
 
@@ -41,6 +67,7 @@ exports.quizSection = function(req, res) {
                 showPreviousBtn: req.params.sectionNum != sections[0].number,
                 showNextBtn: req.params.sectionNum != sections[sections.length - 1].number,
                 previousSectionNum: req.params.sectionNum - 1,
+                sectionNum: req.params.sectionNum,
                 nextSectionNum: req.params.sectionNum + 1,
             });
         });
@@ -172,6 +199,7 @@ function createSectionData(examples, questions) {
         sectionData.push({
             id: q.id,
             input: q.input,
+            output: q.userOutput,
             position: q.position,
             example: false
         })

@@ -1,3 +1,8 @@
+(function () {
+    // Upload answers every 5 seconds
+    setInterval(uploadAnswers, 5000);
+})();
+
 function uploadAnswers() {
     let answers = [];
     
@@ -8,12 +13,14 @@ function uploadAnswers() {
         if (ac.value) {
             answers.push({
                 questionId: ac.id,
-                userAnswer: ac.value
+                userOutput: ac.value
             });
         }
     }
 
-    apiCall(answers);
+    if (answers.length > 0) {
+        apiCall(answers);
+    }
 }
 
 function apiCall(answers) {
@@ -21,6 +28,7 @@ function apiCall(answers) {
         url: '/quiz/answers/',
         type: 'POST',
         data: {
+            sectionNum: sectionNum,
             answers: answers
         },
         success: (result) => {
