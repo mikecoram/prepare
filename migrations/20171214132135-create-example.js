@@ -10,7 +10,13 @@ module.exports = {
       },
       exampleTemplateId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'ExampleTemplates',
+          key: 'id',
+          as: 'exampleTemplate'
+        }
       },
       sectionId: {
         type: Sequelize.INTEGER,

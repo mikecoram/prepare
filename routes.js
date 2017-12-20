@@ -20,6 +20,8 @@ exports.main = function (app) {
     let quizHandler = require('./handlers/quiz');
     app.get('/quiz', [isLoggedIn], quizHandler.quiz);
 
+    app.get('/quiz/section/:sectionNum', [isLoggedIn], quizHandler.quizSection);
+
     var adminController = require('./controllers/admin');
     // Admin middleware
     var isAdmin = adminController.isAdmin;

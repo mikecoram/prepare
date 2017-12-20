@@ -38,7 +38,7 @@ function generate() {
 }
 
 function clearTemplates() {
-    const DROP_SETTINGS = {where: {}, truncate: true};
+    const DROP_SETTINGS = {where: {}};
 
     return new Promise((resolve, reject) => {
       SectionTemplate.destroy(DROP_SETTINGS).then(() => {

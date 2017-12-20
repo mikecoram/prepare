@@ -17,16 +17,17 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
       }
     }
   });
 
-  var ExampleTemplate = require('./exampletemplate')(sequelize, DataTypes);
-  Example.hasOne(ExampleTemplate, {foreignKey: 'exampleTemplateId', targetKey: 'id'});
+  let ExampleTemplate = require('./exampletemplate')(sequelize, DataTypes);
 
-  var Section = require('./section')(sequelize, DataTypes);
-  Example.hasOne(Section, {foreignKey: 'sectionId', targetKey: 'id'});
+  Example.belongsTo(ExampleTemplate, {
+    foreignKey: 'exampleTemplateId', 
+    targetKey: 'id', 
+    as: 'exampleTemplate',
+  });
 
   return Example;
 };
