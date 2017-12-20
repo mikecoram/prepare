@@ -1,6 +1,6 @@
 (function () {
     // Upload answers every 5 seconds
-    setInterval(uploadAnswers, 5000);
+    // setInterval(uploadAnswers, 5000);
 })();
 
 function uploadAnswers() {
