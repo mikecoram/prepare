@@ -1,0 +1,20 @@
+body {
+    background-image: url('/images/background.jpeg');
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-attachment: fixed;
+    background-size:1400px;
+}
+
+.jumbotron {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.centered {
+    text-align: center;
+}
+
+.btn-xl {
+    margin-top:1.8em;
+    padding: 1em 3em 1em 3em;
+}
