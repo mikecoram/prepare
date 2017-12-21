@@ -6,9 +6,7 @@ exports.quiz = function(req, res) {
             res.redirect('/quiz/section/' + getMostRecentSection(quiz));
         }
         else {
-            res.render('quiz/new-quiz', {
-                authorised: req.user != undefined
-            });
+            res.redirect('/quiz/intro');
         }
     });
 }
@@ -20,9 +18,87 @@ exports.intro = function(req, res) {
 }
 
 exports.finish = function(req, res) {
-    res.render('quiz/finish', {
-        authorised: req.user != undefined
+    // mark quiz
+    markQuiz(req.user).then((result) => {
+        res.redirect('/quiz/results');
     });
+}
+
+exports.results = function(req, res) {
+    res.render('quiz/results');
+}
+
+function markQuiz(user) {
+    return new Promise((resolve, reject) => {
+        Quiz.find({
+            where: {
+                userId: user.id,
+                finishedOn: null
+            },
+            include: [{
+                model: Section,
+                as: 'sections',
+                include: [{
+                    model: Question,
+                    as: 'questions'
+                }]
+            }]
+        }).then((quiz) => {
+
+            let seq = [];
+            let results = [];
+
+            // mark questions
+            quiz.sections.forEach((s) => {
+                s.questions.forEach((q) => {
+                    let r = markQuestion(q);
+                    results.push(r);
+
+                    seq.push(Question.update({
+                        correct: r
+                    }, {
+                        where: {
+                            id: q.id
+                        }
+                    }));
+                });
+            });
+
+            // grade quiz and set finished
+            seq.push(Quiz.update({
+                finishedOn: new Date(),
+                result: gradeQuiz(results, quiz.difficulty)
+            }, {
+                where: {
+                    userId: user.id,
+                    finishedOn: null
+                }
+            }));
+
+            Promise.all(seq).then((results) => {
+                resolve();
+            }, (err) => {
+                reject(err);
+            });
+        });
+    });
+}
+
+function markQuestion(question, difficulty) {
+    let uo = question.userOutput;
+    let eo = question.expectedOutput;
+
+
+    if (question.userOutput) {
+        return uo == eo;
+    }
+    else {
+        return false;
+    }
+}
+
+function gradeQuiz(results) {
+    return (results.filter((r) => {return r == true;}).length / results.length) * 100;
 }
 
 exports.uploadAnswers = function(req, res) {
@@ -94,7 +170,10 @@ const QuizGenerator = require(__base + '/lib/quiz-generator');
 
 exports.generateNewQuiz = function(req, res) {
     userHasQuiz(req.user).then((hasQuiz) => {
-        if (!hasQuiz) {
+        if (hasQuiz) {
+            res.redirect('/quiz');
+        }
+        else {
             QuizGenerator.generate({
                 userId: req.user.id,
                 graded: false,

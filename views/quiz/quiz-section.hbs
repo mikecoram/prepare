@@ -10,8 +10,10 @@
         </div>
         <div class="col-md-6 right-controls">
             <div class="row">
-                <a class="btn btn-danger btn-quiz-control pull-right"><span class="glyphicon glyphicon-ok
-"></span> Finish Quiz</a>
+                <a onclick="uploadAnswers()" data-toggle="modal" data-target="#myModal" 
+                    class="btn btn-danger btn-quiz-control pull-right">
+                    <span class="glyphicon glyphicon-ok"></span> Finish Quiz
+                </a>
                 <nav aria-label="Quiz navigation" class="quiz-navigation pull-right">
                     <ul class="pagination section-paginator">
                         <li {{#if hidePreviousBtn}}class="disabled"{{/if}}>
@@ -64,8 +66,33 @@
             </div>
         </div>
     {{/each}}
-
 </div> <!-- /container -->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Finish the quiz?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Any unanswered questions will be marked as incorrect.</p>
+      </div>
+      <div class="modal-footer">
+        <form action="/quiz/finish" method="post">
+            <div class="form-group">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</a>
+                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span> Finish Quiz</button>
+            </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <script>const sectionNum = {{{sectionNum}}}</script>
 <script src="/js/quiz-section.js" type="text/javascript"></script>
