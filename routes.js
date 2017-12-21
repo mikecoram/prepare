@@ -19,10 +19,12 @@ exports.main = function (app) {
 
     let quizHandler = require('./handlers/quiz');
     app.get('/quiz', [isLoggedIn], quizHandler.quiz);
-    app.post('/quiz/new', [isLoggedIn], quizHandler.generateNewQuiz);
+    app.get('/quiz/intro', [isLoggedIn], quizHandler.intro);
     app.get('/quiz/section/:sectionNum', [isLoggedIn], quizHandler.quizSection);
+    app.get('/quiz/finish', [isLoggedIn], quizHandler.finish);
+    app.post('/quiz/new', [isLoggedIn], quizHandler.generateNewQuiz);
     app.post('/quiz/answers', [isLoggedIn], quizHandler.uploadAnswers);
-
+    
     var adminController = require('./controllers/admin');
     // Admin middleware
     var isAdmin = adminController.isAdmin;

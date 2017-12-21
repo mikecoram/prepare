@@ -13,6 +13,18 @@ exports.quiz = function(req, res) {
     });
 }
 
+exports.intro = function(req, res) {
+    res.render('quiz/intro', {
+        authorised: req.user != undefined
+    });
+}
+
+exports.finish = function(req, res) {
+    res.render('quiz/finish', {
+        authorised: req.user != undefined
+    });
+}
+
 exports.uploadAnswers = function(req, res) {
     let answers = req.body.answers;
     let user = req.user;   

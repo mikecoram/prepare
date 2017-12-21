@@ -3,15 +3,15 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-6">
-            <h2>Quiz</h2>
+        <div class="col-md-6 quiz-controls">
+            <a href="/quiz/intro" class="btn btn-info btn-quiz-control"><span class="glyphicon glyphicon-file
+"></span> Introduction</a>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 right-controls">
             <div class="row">
-                <h3 class="pull-right sections-header">Section</h3>
-            </div>
-            <div class="row">
-                <nav aria-label="Quiz navigation" class="pull-right">
+                <a class="btn btn-danger btn-quiz-control pull-right"><span class="glyphicon glyphicon-ok
+"></span> Finish Quiz</a>
+                <nav aria-label="Quiz navigation" class="quiz-navigation pull-right">
                     <ul class="pagination section-paginator">
                         <li {{#if hidePreviousBtn}}class="disabled"{{/if}}>
                             <a class="page-link"
@@ -36,16 +36,17 @@
                         </li>
                     </ul>
                 </nav>
+                <h3 class="pull-right sections-header">Section:</h3>
             </div>
         </div>
     </div>        
 
     <div class="row title-row">
         <div class="col-md-6">
-            <h3>Input</h3>
+            <h3 class="io-title">Input</h3>
         </div>
         <div class="col-md-6">
-            <h3>Output</h3>
+            <h3 class="io-title">Output</h3>
         </div>
     </div>
 

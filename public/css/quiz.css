@@ -31,6 +31,24 @@ textarea {
 }
 
 .sections-header {
-    margin-right:1.2em;
-    margin-top:0em;
+    margin-right:.6em;
+    margin-top:0.4em;
+}
+
+.quiz-controls {
+    margin-top:0.5em;
+}
+
+.btn-quiz-control {
+    margin-top:.3em;
+    padding: .7em .6em .7em .6em;
+    margin-right: 1em;
+}
+
+.quiz-navigation {
+    margin-right: 1em;
+}
+
+.io-title {
+    margin-top:0.4em;
 }
