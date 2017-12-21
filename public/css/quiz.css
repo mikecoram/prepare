@@ -26,7 +26,6 @@ textarea {
 
 .section-paginator {
     margin-top: 0.1em;
-    margin-right: .6em;
     font-size:1.6em;
 }
 
@@ -40,6 +39,7 @@ textarea {
 }
 
 .btn-quiz-control {
+    margin-left: 1em;
     margin-top:.3em;
     padding: .7em .6em .7em .6em;
     margin-right: 1em;
@@ -51,4 +51,8 @@ textarea {
 
 .io-title {
     margin-top:0.4em;
+}
+
+.btn-intro {
+    margin-top:-0.2em;
 }
