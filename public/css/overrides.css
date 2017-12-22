@@ -4,7 +4,8 @@
 
 .btn-xl {
     margin-top:1.8em;
-    padding: 1em 3em 1em 3em;
+    padding: 1em 0 1em 0;
+    width: 10em;
 }
 
 .jumbotron {
