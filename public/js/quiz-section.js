@@ -1,7 +1,12 @@
 (function () {
-    // Upload answers every 5 seconds
-    // setInterval(uploadAnswers, 5000);
+    if (showTutorial) {
+        startTutorial();
+    }
 })();
+
+function startTutorial() {
+    introJs().start();
+}
 
 function uploadAnswers() {
     let answers = [];

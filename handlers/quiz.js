@@ -1,9 +1,10 @@
 const { Quiz, Section, Question, Example, ExampleTemplate } = require('../models/');
 
 exports.quiz = function(req, res) {
+    console.log(req.query);
     getUserQuiz(req.user).then((quiz) => {
         if (quiz) {
-            res.redirect('/quiz/section/' + getMostRecentSection(quiz));
+            res.redirect('/quiz/section/' + getMostRecentSection(quiz) + '?tutorial=' + (req.query.tutorial || false));
         }
         else {
             res.redirect('/quiz/intro');
@@ -26,10 +27,6 @@ exports.finish = function(req, res) {
 
 exports.results = function(req, res) {
     res.render('quiz/results');
-}
-
-exports.tutorial = function(req, res) {
-    res.render('quiz/tutorial');
 }
 
 function markQuiz(user) {
@@ -165,9 +162,18 @@ exports.quizSection = function(req, res) {
                 previousSectionNum: Number.parseInt(req.params.sectionNum) - 1,
                 sectionNum: Number.parseInt(req.params.sectionNum),
                 nextSectionNum: Number.parseInt(req.params.sectionNum) + 1,
+                showTutorial: req.query.tutorial || false
             });
         });
     });
+}
+
+function userFirstQuiz(user) {
+    Quiz.find({
+        where: {
+            userId: user.id
+        }
+    })
 }
 
 const QuizGenerator = require(__base + '/lib/quiz-generator');
@@ -183,7 +189,7 @@ exports.generateNewQuiz = function(req, res) {
                 graded: false,
                 difficulty: 0
             }).then(() => {
-                res.redirect('/quiz');
+                res.redirect('/quiz?tutorial=true');
             });        
         }
     });
@@ -245,6 +251,8 @@ function getSections(user, currentSectionNum) {
     });
 }
 
+const posSort = (a, b) => {return a.position - b.position;};
+
 function getSectionData(user, sectionNum) {
     return new Promise((resolve, reject) => {
         Quiz.find({
@@ -272,8 +280,8 @@ function getSectionData(user, sectionNum) {
             }]
         }).then((quiz) => {
             resolve(createSectionData(
-                quiz.sections[0].examples, 
-                quiz.sections[0].questions
+                quiz.sections[0].examples.sort(posSort), 
+                quiz.sections[0].questions.sort(posSort)
             ));
         }, (err) => {
             reject(err);
@@ -290,7 +298,8 @@ function createSectionData(examples, questions) {
             input: e.exampleTemplate.input,
             output: e.exampleTemplate.output,
             position: e.exampleTemplate.position,
-            example: true
+            example: true,
+            first: e == examples[0]
         });
     });
 
@@ -300,10 +309,10 @@ function createSectionData(examples, questions) {
             input: q.input,
             output: q.userOutput,
             position: q.position,
-            example: false
+            example: false,
+            first: q == questions[0]
         })
     });
 
-    // sort by position
-    return sectionData.sort((a, b) => {return a.position - b.position;});
+    return sectionData.sort(posSort);
 }

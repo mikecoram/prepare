@@ -1,13 +1,19 @@
 <link href="/css/quiz.css" rel="stylesheet">
+<!-- Add IntroJs styles -->
+<link href="/lib/intro.js/introjs.css" rel="stylesheet">
 
 <div class="container">
 
     <div class="row">
         <a href="/quiz/intro" onclick="uploadAnswers()" class="btn btn-info btn-intro btn-quiz-control">Introduction</a>
-        <a href="/quiz/tutorial" onclick="uploadAnswers()" class="btn btn-info btn-quiz-control">Tutorial</a>
+        <a onclick="startTutorial()" class="btn btn-info btn-quiz-control"
+            data-step="5" data-intro="You can view this tutorial again at any time by clicking here. Good luck!">Tutorial</a>
         <a onclick="uploadAnswers()" data-toggle="modal" data-target="#finishModal" 
-            class="btn btn-danger btn-quiz-control btn-finish pull-right">Finish</a>
-        <div class="sections pull-right">
+            class="btn btn-danger btn-quiz-control btn-finish pull-right"
+                data-step="4" data-intro="Once you have attempted every question, you can finish the quiz and have it marked. Make sure you've answered every question before you do this.">
+                Finish</a>
+        <div class="sections pull-right" 
+            data-step="3" data-intro="Once you have answered all the questions, you can move to other sections in the quiz. Don't worry about saving your answers, this happens automatically." >
             <h4 class="sections-header">Section:</h4>
             <nav aria-label="Quiz navigation" class="quiz-navigation">
                 <ul class="pagination section-paginator">
@@ -47,7 +53,13 @@
     </div>
 
     {{#each sectionData}}
-        <div class="row question-row">
+        <div class="row question-row"
+            {{#if first}}
+                {{#if example}}data-step="1" data-intro="Each section of the quiz will have 1 or more examples. Both the input and the output are filled in for you. Use these to work out how to answer the questions."
+                {{else}}data-step="2" data-intro="For each question you should fill in what you think the output will be based on the input code."
+                {{/if}}
+            {{/if}}
+        >
             <div class="col-md-6 question-col">
                 <textarea class="form-control" disabled rows="7">{{input}}</textarea>
             </div>
@@ -87,5 +99,9 @@
   </div>
 </div>
 
-<script>const sectionNum = {{{sectionNum}}}</script>
+<script type="text/javascript" src="/lib/intro.js/intro.js"></script>
+<script>
+    const sectionNum = {{{sectionNum}}};
+    const showTutorial = {{{showTutorial}}};
+</script>
 <script src="/js/quiz-section.js" type="text/javascript"></script>
