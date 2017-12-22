@@ -150,7 +150,7 @@ exports.uploadAnswers = function(req, res) {
 exports.quizSection = function(req, res) {
     getSectionData(req.user, req.params.sectionNum).then((sectionData) => {
         getSections(req.user, req.params.sectionNum).then((sections) => {
-            res.render('quiz/quiz-section', {
+            res.render('quiz/section', {
                 authorised: req.user != undefined,
                 sections: sections,
                 sectionData: sectionData,
