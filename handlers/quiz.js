@@ -1,7 +1,6 @@
 const { Quiz, Section, Question, Example, ExampleTemplate } = require('../models/');
 
 exports.quiz = function(req, res) {
-    console.log(req.query);
     getUserQuiz(req.user).then((quiz) => {
         if (quiz) {
             res.redirect('/quiz/section/' + getMostRecentSection(quiz) + '?tutorial=' + (req.query.tutorial || false));
