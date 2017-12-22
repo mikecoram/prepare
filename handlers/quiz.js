@@ -38,7 +38,8 @@ exports.results = function(req, res) {
     }).then((quiz) => {
         res.render('quiz/results', {
             authorised: req.user != undefined,
-            result: quiz.result
+            result: quiz.result,
+            completed: false
         });
     });
 }
