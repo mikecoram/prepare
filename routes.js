@@ -20,6 +20,7 @@ exports.main = function (app) {
     let quizHandler = require('./handlers/quiz');
     app.get('/quiz', [isLoggedIn], quizHandler.quiz);
     app.get('/quiz/intro', [isLoggedIn], quizHandler.intro);
+    app.get('/quiz/tutorial', [isLoggedIn], quizHandler.tutorial);
     app.get('/quiz/section/:sectionNum', [isLoggedIn], quizHandler.quizSection);
     app.get('/quiz/results', [isLoggedIn], quizHandler.results);
     app.post('/quiz/new', [isLoggedIn], quizHandler.generateNewQuiz);

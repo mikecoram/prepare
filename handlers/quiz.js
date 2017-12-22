@@ -28,6 +28,10 @@ exports.results = function(req, res) {
     res.render('quiz/results');
 }
 
+exports.tutorial = function(req, res) {
+    res.render('quiz/tutorial');
+}
+
 function markQuiz(user) {
     return new Promise((resolve, reject) => {
         Quiz.find({
