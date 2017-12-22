@@ -1,7 +1,10 @@
 body {
-    background-image: url('/images/background.jpeg');
-    background-repeat: no-repeat;
-    background-position: left top;
-    background-attachment: fixed;
-    background-size:1400px;
+    /* background-repeat: no-repeat;
+    background-size: auto; */
+    
+}
+
+body {
+    background:white url('/images/background.jpeg') center top no-repeat fixed;
+    font-size:18px;
 }

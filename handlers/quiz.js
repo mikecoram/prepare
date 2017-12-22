@@ -25,7 +25,22 @@ exports.finish = function(req, res) {
 }
 
 exports.results = function(req, res) {
-    res.render('quiz/results');
+    const Op = require('sequelize').Op;
+
+    Quiz.find({
+        where: {
+            userId: req.user.id,
+            [Op.not]: [
+                {finishedOn: null}
+            ]
+        },
+        order: [['finishedOn', 'DESC']]
+    }).then((quiz) => {
+        res.render('quiz/results', {
+            authorised: req.user != undefined,
+            result: quiz.result
+        });
+    });
 }
 
 function markQuiz(user) {
