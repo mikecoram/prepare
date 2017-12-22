@@ -1,1 +1,5 @@
 Update sequelize-cli
+Update npm-packages
+Refactor handlers/quiz.js
+Allow user to view breakdown of a marked quiz?
+Don't show tutorial if user is taking their second quiz?
