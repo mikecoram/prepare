@@ -3,6 +3,10 @@ textarea {
     font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 }
 
+textarea.form-control {
+    border-radius:0;
+}
+
 .form-control:disabled {
     cursor:default;
 }
@@ -13,25 +17,37 @@ textarea {
 }
 
 .question-row {
-    margin-bottom:1em;
+    padding-left:1em;
+    padding-right:1em;
+    margin-bottom:1.2em;
 }
 
-.btn-next-question {
-    margin-right:0.7em;
-}
-
-.btn-exit-test {
-    margin-right:0.5em;    
+.output-col {
+    padding-left: 0.4em;
 }
 
 .section-paginator {
-    margin-top: 0.1em;
-    font-size:1.6em;
+    font-size:1.2em;
+    display:inline;
+}
+
+.sections {
+    display: flex;
+    margin-bottom:1em;
 }
 
 .sections-header {
     margin-right:.6em;
-    margin-top:0.4em;
+    float:left;
+    margin-top:.4em;
+}
+
+.question-col {
+    padding:0;
+}
+
+.quiz-navigation {
+    margin-right: 1em;
 }
 
 .quiz-controls {
@@ -39,20 +55,17 @@ textarea {
 }
 
 .btn-quiz-control {
-    margin-left: 1em;
-    margin-top:.3em;
-    padding: .7em .6em .7em .6em;
+    margin-top:.1em;
+    width: 7.6em;
+    padding: .5em 0 .5em 0;
     margin-right: 1em;
+    margin-bottom: 1em;
 }
 
-.quiz-navigation {
-    margin-right: 1em;
+.btn-intro {
+    margin-left:1.2em;
 }
 
 .io-title {
     margin-top:0.4em;
-}
-
-.btn-intro {
-    margin-top:-0.2em;
 }

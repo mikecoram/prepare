@@ -3,62 +3,56 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-6 quiz-controls">
-            <div class="row">
-                <a href="/quiz/intro" class="btn btn-info btn-intro btn-quiz-control"><span class="glyphicon glyphicon-file"></span> Introduction</a>
-            </div>
-        </div>
-        <div class="col-md-6 right-controls">
-            <div class="row">
-                <a onclick="uploadAnswers()" data-toggle="modal" data-target="#myModal" 
-                    class="btn btn-danger btn-quiz-control pull-right">
-                    <span class="glyphicon glyphicon-ok"></span> Finish Quiz
-                </a>
-                <nav aria-label="Quiz navigation" class="quiz-navigation pull-right">
-                    <ul class="pagination section-paginator">
-                        <li {{#if hidePreviousBtn}}class="disabled"{{/if}}>
-                            <a class="page-link"
-                                {{#if showPreviousBtn}}href="/quiz/section/{{previousSectionNum}}"{{/if}}
-                                    onclick="uploadAnswers()">
-                                <span class="glyphicon glyphicon-chevron-left"></span></a>
-                        </li>
-
-                        {{#each sections}}
-                            <li {{#if current}}class="active"{{/if}}>
-                                <a href="/quiz/section/{{number}}"
-                                    onclick="uploadAnswers()">{{number}}</a>
-                            </li>
-                        {{/each}}
-
-                        <li {{#if hideNextBtn}}class="disabled"{{/if}}>
-                            <a class="page-link" 
-                                {{#if showNextBtn}}href="/quiz/section/{{nextSectionNum}}"{{/if}}
+        <a href="/quiz/intro" onclick="uploadAnswers()" class="btn btn-info btn-intro btn-quiz-control">Introduction</a>
+        <a onclick="uploadAnswers()" data-toggle="modal" data-target="#finishModal" 
+            class="btn btn-danger btn-quiz-control pull-right">
+            Finish Quiz
+        </a>
+        <div class="sections pull-right">
+            <h4 class="sections-header">Section:</h4>
+            <nav aria-label="Quiz navigation" class="quiz-navigation">
+                <ul class="pagination section-paginator">
+                    <li {{#if hidePreviousBtn}}class="disabled"{{/if}}>
+                        <a class="page-link"
+                            {{#if showPreviousBtn}}href="/quiz/section/{{previousSectionNum}}"{{/if}}
                                 onclick="uploadAnswers()">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
+                            <span class="glyphicon glyphicon-chevron-left"></span></a>
+                    </li>
+
+                    {{#each sections}}
+                        <li {{#if current}}class="active"{{/if}}>
+                            <a href="/quiz/section/{{number}}"
+                                onclick="uploadAnswers()">{{number}}</a>
                         </li>
-                    </ul>
-                </nav>
-                <h3 class="pull-right sections-header">Section:</h3>
-            </div>
+                    {{/each}}
+
+                    <li {{#if hideNextBtn}}class="disabled"{{/if}}>
+                        <a class="page-link" 
+                            {{#if showNextBtn}}href="/quiz/section/{{nextSectionNum}}"{{/if}}
+                            onclick="uploadAnswers()">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>        
 
-    <div class="row title-row">
+    <div class="row title-row hidden-sm hidden-xs">
         <div class="col-md-6">
             <h3 class="io-title">Input</h3>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 output-col">
             <h3 class="io-title">Output</h3>
         </div>
     </div>
 
     {{#each sectionData}}
         <div class="row question-row">
-            <div class="col-md-6">
+            <div class="col-md-6 question-col">
                 <textarea class="form-control" disabled rows="7">{{input}}</textarea>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 question-col">
                 <textarea id="{{#unless example}}{{id}}{{/unless}}" 
                         class="form-control {{#unless example}}answer{{/unless}}" 
                         {{#if example}}disabled{{/if}} 
@@ -69,7 +63,7 @@
 </div> <!-- /container -->
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="finishModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -79,13 +73,13 @@
         <h4 class="modal-title">Finish the quiz?</h4>
       </div>
       <div class="modal-body">
-        <p>Any unanswered questions will be marked as incorrect.</p>
+        <p>You will not be able to change your answers and any unanswered questions will be marked as incorrect.</p>
       </div>
       <div class="modal-footer">
         <form action="/quiz/finish" method="post">
             <div class="form-group">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</a>
-                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span> Finish Quiz</button>
+                <button type="submit" class="btn btn-danger">Finish Quiz</button>
             </div>
         </form>
       </div>
