@@ -17,8 +17,8 @@ exports.entries = [
         },
         difficulty: 10,
         valueGenerators: [
-            new ValueGenerator('integer', 0, 10),
-            new ValueGenerator('integer', 0, 10)
+            new ValueGenerator('integer', 1, 10),
+            new ValueGenerator('integer', 1, 10)
         ]
     }
 ];
