@@ -28,9 +28,9 @@ exports.entries = [
         output: 'Hello\nHello\nHello'
     },
     {
-        inputTemplate: 'printMultiple("Goodbye", 5)',
+        inputTemplate: 'printMultiple("Goodbye", 2)',
         output: () => {
-            return 'Goodbye\nGoodbye\nGoodbye\nGoodbye\nGoodbye';
+            return 'Goodbye\nGoodbye';
         },
         difficulty: 0
     },
