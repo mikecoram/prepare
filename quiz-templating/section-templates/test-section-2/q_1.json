@@ -1,6 +1,0 @@
-{
-    "inputTemplate": "print(${1} - ${2})",
-    "outputTemplate": "${1} - ${2};",
-    "difficulty": 10  ,
-    "position": 2
-}

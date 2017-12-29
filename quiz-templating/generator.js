@@ -2,26 +2,32 @@
 
 const { SectionTemplate, ExampleTemplate, QuestionTemplate, ValueGenerator } = require('../models');
 
-const templateReader = require('./template-reader');
-const templateSeeder = require('./template-seeder');
+const reader = require('./reader');
+const seeder = require('./seeder');
 
 (function () {
+    console.log('Clearing existing templates...')
+    
     clearTemplates().then(() => {
+        console.log('Generating new template data for the database...')
+
         generate().then(() => {
             console.log('Quiz template generation complete.')
             process.exit();
+        }, (err) => {
+            console.log(err);
         });
     })
 })();
 
 function generate() {
     return new Promise((resolve, reject) => {
-        let templateData = templateReader.read();
+        let templateData = reader.read();
 
         let seq = [];
 
         templateData.forEach((section) => {
-            seq.push(templateSeeder.seed(
+            seq.push(seeder.seed(
                 section.sectionTemplate,
                 section.exampleTemplates,
                 section.questionTemplates,

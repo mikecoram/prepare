@@ -1,0 +1,94 @@
+const fs = require('fs');
+
+const TEMPLATE_DIR = __dirname + '/section-templates';
+
+exports.read = read;
+
+function read() {
+    let sectionTemplates = [];
+
+    getTemplateData().forEach((sd) => {
+        let sectionTemplate = {}, 
+            exampleTemplates = [], 
+            questionTemplates = [], 
+            valueGenerators = [];
+    
+        sectionTemplate = sd.info;
+    
+        let pos = 0;
+    
+        sd.entries.forEach((e) => {
+            if (isExample(e)) {
+                exampleTemplates.push({
+                    position: pos++,
+                    input: e.input,
+                    output: e.output
+                });
+            }
+            else {
+                let valuePos = 1;
+    
+                e.valueGenerators.forEach((vg) => {
+                    valueGenerators.push({
+                        questionPosition: pos,
+                        valuePosition: valuePos++,
+                        type: vg.type,
+                        min: vg.min,
+                        max: vg.max
+                    });
+                });
+    
+                questionTemplates.push({
+                    position: pos++,
+                    inputTemplate: e.inputTemplate,
+                    outputTemplate: getOutputTemplate(
+                        e.output, 
+                        e.valueGenerators.length
+                    ),
+                    difficulty: e.difficulty
+                });
+            }
+        });
+
+        sectionTemplates.push({
+            sectionTemplate: sectionTemplate,
+            exampleTemplates: exampleTemplates,
+            questionTemplates: questionTemplates,
+            valueGenerators: valueGenerators
+        });
+    });
+
+    return sectionTemplates;
+}
+
+function getTemplateData() {
+    let data = [];
+    let sections = fs.readdirSync(TEMPLATE_DIR);
+
+    sections.forEach((sd) => {
+        data.push(require(TEMPLATE_DIR + '/' + sd));
+    });
+
+    return data;
+}
+
+function isExample(entry) {
+    return entry.input != undefined;
+}
+
+function getParameterString(amount) {
+    let paramString = '';
+    
+    for (let i = 1; i <= amount; i++) {
+        paramString += '${'+ i + '}';
+        if (i != amount) {
+            paramString += ', ';
+        }
+    }
+    
+    return paramString;
+}
+
+function getOutputTemplate(func, args) {
+    return `let f = ${func.toString()}; f(${getParameterString(args)});`;
+}
