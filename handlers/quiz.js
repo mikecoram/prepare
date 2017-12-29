@@ -2,12 +2,14 @@ const { Quiz, Section, Question, Example, ExampleTemplate } = require('../models
 
 exports.quiz = function(req, res) {
     getUserQuiz(req.user).then((quiz) => {
-        if (quiz) {
-            res.redirect('/quiz/section/' + getMostRecentSection(quiz) + '?tutorial=' + (req.query.tutorial || false));
-        }
-        else {
-            res.redirect('/quiz/intro');
-        }
+        getEarliestUnfinishedSectionId(quiz).then((currentSectionId) => {
+            if (quiz) {
+                res.redirect('/quiz/section/' + currentSectionId + '?tutorial=' + (req.query.tutorial || false));
+            }
+            else {
+                res.redirect('/quiz/intro');
+            }
+        });
     });
 }
 
@@ -210,8 +212,24 @@ exports.generateNewQuiz = function(req, res) {
     });
 }
 
-function getMostRecentSection(quiz) {
-    return 1;
+function getEarliestUnfinishedSectionId(quiz) {
+    return new Promise((resolve, reject) => {
+        Section.find({
+            where: {
+                quizId: quiz.id
+            },
+            include: [{
+                model: Question,
+                as: 'questions',
+                where: {
+                    userOutput: null
+                },
+            }],
+            order: [['number', 'ASC']]
+        }).then((s) => {
+            resolve(s ? s.id : 1);
+        });
+    });
 }
 
 function userHasQuiz(user) {
