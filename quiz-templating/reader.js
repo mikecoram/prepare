@@ -28,22 +28,24 @@ function read() {
             else {
                 let valuePos = 1;
     
-                e.valueGenerators.forEach((vg) => {
-                    valueGenerators.push({
-                        questionPosition: pos,
-                        valuePosition: valuePos++,
-                        type: vg.type,
-                        min: vg.min,
-                        max: vg.max
+                if (e.valueGenerators) {
+                    e.valueGenerators.forEach((vg) => {
+                        valueGenerators.push({
+                            questionPosition: pos,
+                            valuePosition: valuePos++,
+                            type: vg.type,
+                            min: vg.min,
+                            max: vg.max
+                        });
                     });
-                });
+                }
     
                 questionTemplates.push({
                     position: pos++,
                     inputTemplate: e.inputTemplate,
                     outputTemplate: getOutputTemplate(
                         e.output, 
-                        e.valueGenerators.length
+                        e.valueGenerators ? e.valueGenerators.length : 0
                     ),
                     difficulty: e.difficulty
                 });
