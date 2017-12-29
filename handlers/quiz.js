@@ -211,7 +211,7 @@ exports.generateNewQuiz = function(req, res) {
 }
 
 function getMostRecentSection(quiz) {
-    return 0;
+    return 1;
 }
 
 function userHasQuiz(user) {
