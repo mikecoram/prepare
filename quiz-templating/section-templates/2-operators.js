@@ -64,10 +64,9 @@ exports.entries = [
         output: '2'
     },
     {
-        inputTemplate: 'print(${1} / ${2})',
+        inputTemplate: 'print(${1} / 2)',
         valueGenerators: [
-            new ValueGenerator('integer', 1, 10),
-            new ValueGenerator('integer', 1, 10)
+            new ValueGenerator('even-integer', 4, 21),
         ],
         output: (a, b) => {
             return a / b;

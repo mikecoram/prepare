@@ -54,9 +54,9 @@ exports.entries = [
     {
         inputTemplate: 'let x = ${1} * ${2}\nlet y = x * ${3}\nprint(y)',
         valueGenerators: [
-            new ValueGenerator('integer', 1, 10),
-            new ValueGenerator('integer', 1, 3),
-            new ValueGenerator('integer', 1, 3),
+            new ValueGenerator('integer', 1, 7),
+            new ValueGenerator('integer', 1, 4),
+            new ValueGenerator('integer', 1, 4),
         ],
         output: (a, b, c) => {
             return a * b * c;
@@ -70,7 +70,7 @@ exports.entries = [
     {
         inputTemplate: 'let x = ${1}\nlet x = ${2}\nprint(x)',
         valueGenerators: [
-            new ValueGenerator('integer', 1, 5),
+            new ValueGenerator('integer', 1, 6),
             new ValueGenerator('integer', 6, 10),
         ],
         output: (a, b) => {
