@@ -1,5 +1,6 @@
 textarea {
     resize:none;
+    min-height: 17em;
     font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 }
 
