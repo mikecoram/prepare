@@ -103,12 +103,13 @@ function markQuiz(user) {
 }
 
 function markQuestion(question, difficulty) {
-    let uo = question.userOutput;
-    let eo = question.expectedOutput;
-
+    // Some questions are meant to be left blank
+    if (question.expectedOutput == '' && question.userOutput == null) {
+        return true;
+    } 
 
     if (question.userOutput) {
-        return uo == eo;
+        return question.userOutput == question.expectedOutput;
     }
     else {
         return false;
