@@ -17,11 +17,11 @@ exports.entries = [
     },
     {
         inputTemplate: 'print(${1})',
-        output: (a) => { return a; },
-        difficulty: 0,
         valueGenerators: [
             new ValueGenerator('string')
-        ]
+        ],
+        output: (a) => { return a; },
+        difficulty: 0
     },
     {
         input: 'printMultiple("Hello", 3)',
@@ -36,6 +36,10 @@ exports.entries = [
     },
     {
         inputTemplate: 'printMultiple(${1}, ${2})',
+        valueGenerators: [
+            new ValueGenerator('string'),
+            new ValueGenerator('integer', 1, 5)
+        ],
         output: (str, amount) => {
             let out = '';
             for (let i = 0; i < amount; i++) {
@@ -43,10 +47,6 @@ exports.entries = [
             }
             return out;
         },
-        difficulty: 0,
-        valueGenerators: [
-            new ValueGenerator('string'),
-            new ValueGenerator('integer', 1, 5)
-        ]
+        difficulty: 0
     }
 ];
