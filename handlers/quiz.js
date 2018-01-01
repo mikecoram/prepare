@@ -2,14 +2,14 @@ const { Quiz, Section, Question, Example, ExampleTemplate } = require('../models
 
 exports.quiz = function(req, res) {
     getUserQuiz(req.user).then((quiz) => {
-        getEarliestUnfinishedSectionId(quiz).then((currentSectionId) => {
-            if (quiz) {
-                res.redirect('/quiz/section/' + currentSectionId + '?tutorial=' + (req.query.tutorial || false));
-            }
-            else {
-                res.redirect('/quiz/intro');
-            }
-        });
+        if (quiz) {
+            getEarliestUnfinishedSectionNum(quiz).then((currentSectionNum) => {
+                res.redirect('/quiz/section/' + currentSectionNum + '?tutorial=' + (req.query.tutorial || false));
+            });
+        }
+        else {
+            res.redirect('/quiz/intro');
+        }
     });
 }
 
@@ -201,18 +201,21 @@ exports.generateNewQuiz = function(req, res) {
             res.redirect('/quiz');
         }
         else {
+            console.log('Generating new quiz...')
             QuizGenerator.generate({
                 userId: req.user.id,
                 graded: false,
                 difficulty: 0
             }).then(() => {
                 res.redirect('/quiz?tutorial=true');
+            }, (err) => {
+                console.log(err);
             });        
         }
     });
 }
 
-function getEarliestUnfinishedSectionId(quiz) {
+function getEarliestUnfinishedSectionNum(quiz) {
     return new Promise((resolve, reject) => {
         Section.find({
             where: {
@@ -227,7 +230,7 @@ function getEarliestUnfinishedSectionId(quiz) {
             }],
             order: [['number', 'ASC']]
         }).then((s) => {
-            resolve(s ? s.id : 1);
+            resolve(s ? s.number : 1);
         });
     });
 }
