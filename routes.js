@@ -13,18 +13,18 @@ exports.main = function (app) {
     var authHandler = require('./handlers/auth');
     app.get('/signup', [redirectToDashboard], authHandler.signup);
     app.get('/login', [redirectToDashboard], authHandler.login);
-    app.get('/logout', authHandler.logout);
     app.get('/forgottenpassword', [redirectToDashboard], authHandler.forgottenpassword);
+    app.get('/logout', authHandler.logout);
     app.get('/resetpassword/:token', authHandler.resetPassword);
 
     let quizHandler = require('./handlers/quiz');
     app.get('/quiz', [isLoggedIn], quizHandler.quiz);
+    app.post('/quiz/new', [isLoggedIn], quizHandler.new);
     app.get('/quiz/intro', [isLoggedIn], quizHandler.intro);
     app.get('/quiz/section/:sectionNum', [isLoggedIn], quizHandler.section);
-    app.get('/quiz/results', [isLoggedIn], quizHandler.results);
-    app.post('/quiz/new', [isLoggedIn], quizHandler.new);
     app.post('/quiz/answers', [isLoggedIn], quizHandler.uploadAnswers);
     app.post('/quiz/finish', [isLoggedIn], quizHandler.finish);
+    app.get('/quiz/results', [isLoggedIn], quizHandler.results);
     
     var adminController = require('./controllers/admin');
     // Admin middleware
