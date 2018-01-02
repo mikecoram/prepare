@@ -82,7 +82,8 @@ exports.entries = [
     },
     {
         input: 'let x = 5\nlet x = x + 3\nprint(x)',
-        output: '8'
+        output: '8',
+        difficulty: 70
     },
     {
         inputTemplate: 'let x = ${1}\nlet x = x + ${2}\nprint(x)',
