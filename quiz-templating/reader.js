@@ -22,7 +22,8 @@ function read() {
                 exampleTemplates.push({
                     position: pos++,
                     input: e.input,
-                    output: e.output
+                    output: e.output,
+                    difficulty: e.difficulty || 0
                 });
             }
             else {
