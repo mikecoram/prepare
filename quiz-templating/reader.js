@@ -8,12 +8,10 @@ function read() {
     let sectionTemplates = [];
 
     getTemplateData().forEach((sd) => {
-        let sectionTemplate = {}, 
+        let sectionTemplate = sd.info, 
             exampleTemplates = [], 
             questionTemplates = [], 
             valueGenerators = [];
-    
-        sectionTemplate = sd.info;
     
         let pos = 0;
     
