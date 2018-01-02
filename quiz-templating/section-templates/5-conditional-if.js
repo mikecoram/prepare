@@ -22,7 +22,8 @@ exports.entries = [
         output: 
             'x is equal to 5\n'+
             'x is greater than 3\n'+
-            'x is greater than or equal to 5'
+            'x is greater than or equal to 5',
+        difficulty: 30
     },
     {
         inputTemplate: 

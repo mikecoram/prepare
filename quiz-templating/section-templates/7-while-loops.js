@@ -12,7 +12,8 @@ exports.entries = [
             'while (x < 6)\n'+
                 '\tprint(x)\n'+
                 '\tlet x = x + 1',
-        output: '1\n2\n3\n4\n5'
+        output: '1\n2\n3\n4\n5',
+        difficulty: 70
     },
     {
         inputTemplate: 

@@ -8,7 +8,8 @@ exports.info = {
 exports.entries = [
     {
         input: 'print("Hello")',
-        output: 'Hello'
+        output: 'Hello',
+        difficulty: 0
     },
     {
         inputTemplate: 'print("Goodbye")',
@@ -25,7 +26,8 @@ exports.entries = [
     },
     {
         input: 'printMultiple("Hello", 3)',
-        output: 'Hello\nHello\nHello'
+        output: 'Hello\nHello\nHello',
+        difficulty: 20        
     },
     {
         inputTemplate: 'printMultiple("Goodbye", 2)',

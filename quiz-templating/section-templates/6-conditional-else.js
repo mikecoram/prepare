@@ -13,7 +13,8 @@ exports.entries = [
                 '\tprint("x is equal to 3")\n'+
             'else\n'+
                 '\tprint("x is not equal to 3")',
-        output: 'x is not equal to 3'
+        output: 'x is not equal to 3',
+        difficulty: 50
     },
     {
         inputTemplate: 

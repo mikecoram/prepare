@@ -8,7 +8,8 @@ exports.info = {
 exports.entries = [
     {
         input: 'let x = halfOf(4)\nprint(x)',
-        output: '2'
+        output: '2',
+        difficulty: 0
     },
     {
         inputTemplate: 'let x = halfOf(${1})\nprint(x)',

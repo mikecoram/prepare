@@ -8,7 +8,8 @@ exports.info = {
 exports.entries = [
     {
         input: 'let x = 5\nprint(x)',
-        output: '5'
+        output: '5',
+        difficulty: 0
     },
     {
         inputTemplate: 'let x = ${1}\nprint(x)',
@@ -65,7 +66,8 @@ exports.entries = [
     },
     {
         input: 'let x = 7\nlet x = 1\nprint(x)',
-        output: '1'
+        output: '1',
+        difficulty: 60
     },
     {
         inputTemplate: 'let x = ${1}\nlet x = ${2}\nprint(x)',
