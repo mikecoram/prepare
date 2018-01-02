@@ -22,7 +22,7 @@ function seed(sectionTemplate, exampleTemplates, questionTemplates, valueGenerat
             let vgsAtPosition = valueGenerators.filter((vg) => { 
               return vg.questionPosition == qt.position;
             });
-            seq.push(createManyRecords(ValueGenerator, valueGenerators, [{
+            seq.push(createManyRecords(ValueGenerator, vgsAtPosition, [{
               key: 'questionTemplateId',
               val: qt.id
             }]));
