@@ -71,8 +71,8 @@ exports.entries = [
         valueGenerators: [
             new ValueGenerator('even-integer', 4, 21),
         ],
-        output: (a, b) => {
-            return a / b;
+        output: (a) => {
+            return a / 2;
         },
         difficulty: 20
     }
