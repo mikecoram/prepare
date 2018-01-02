@@ -18,6 +18,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    difficulty: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
     sectionTemplateId: {
       type: DataTypes.INTEGER,
       allowNull: false

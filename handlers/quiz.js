@@ -13,8 +13,7 @@ exports.new = function(req, res) {
         }
         else {
             console.log('Generating new quiz...')
-            QuizGenerator.generate({
-                userId: req.user.id,
+            QuizGenerator.generate(req.user, {
                 graded: true,
                 difficulty: 0
             }).then(() => {
