@@ -6,6 +6,26 @@ const QuizGenerator = require(__base + '/lib/quiz-generator');
 const QuizUser = require(__base + '/lib/quiz-user');
 const QuizResults = require('../lib/quiz-results');
 
+exports.new = function(req, res) {
+    QuizUser.hasQuiz(req.user).then((hasQuiz) => {
+        if (hasQuiz) {
+            res.redirect('/quiz');
+        }
+        else {
+            console.log('Generating new quiz...')
+            QuizGenerator.generate({
+                userId: req.user.id,
+                graded: false,
+                difficulty: 0
+            }).then(() => {
+                res.redirect('/quiz?tutorial=true');
+            }, (err) => {
+                console.log(err);
+            });        
+        }
+    });
+}
+
 exports.intro = function(req, res) {
     res.render('quiz/intro', {
         authorised: req.user != undefined
@@ -27,7 +47,7 @@ exports.quiz = function(req, res) {
     });
 }
 
-exports.quizSection = function(req, res) {
+exports.section = function(req, res) {
     Promise.all([
         QuizSections.getSections(req.user, req.params.sectionNum),    
         QuizSections.getSectionData(req.user, req.params.sectionNum)
@@ -50,26 +70,6 @@ exports.quizSection = function(req, res) {
             nextSectionNum: sectionNum + 1,
             showTutorial: req.query.tutorial || false
         });
-    });
-}
-
-exports.generateNewQuiz = function(req, res) {
-    QuizUser.hasQuiz(req.user).then((hasQuiz) => {
-        if (hasQuiz) {
-            res.redirect('/quiz');
-        }
-        else {
-            console.log('Generating new quiz...')
-            QuizGenerator.generate({
-                userId: req.user.id,
-                graded: false,
-                difficulty: 0
-            }).then(() => {
-                res.redirect('/quiz?tutorial=true');
-            }, (err) => {
-                console.log(err);
-            });        
-        }
     });
 }
 
