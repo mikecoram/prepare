@@ -2,7 +2,7 @@ const ValueGenerator = require('../value-generator').ValueGenerator;
 
 exports.info = {
     name: 'Conditional logic: if',
-    difficulty: 0
+    difficulty: 30
 };
 
 exports.entries = [
@@ -35,7 +35,7 @@ exports.entries = [
         output: (a) => {
             return 'x is equal to ' + a;
         },
-        difficulty: 0
+        difficulty: 30
     },
     {
         inputTemplate:
@@ -49,7 +49,7 @@ exports.entries = [
         output: (a, b) => {
             return '';
         },
-        difficulty: 0
+        difficulty: 40
     },
     {
         inputTemplate: 
@@ -64,7 +64,7 @@ exports.entries = [
         output: (a) => {
             return 'x is less than or equal to ' + a;
         },
-        difficulty: 0
+        difficulty: 50
     },
     {
         inputTemplate: 
@@ -81,6 +81,6 @@ exports.entries = [
         output: (a, b, c) => {
             return 'x is greater than ' + b;
         },
-        difficulty: 0
+        difficulty: 60
     }
 ];

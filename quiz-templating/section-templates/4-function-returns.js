@@ -28,6 +28,6 @@ exports.entries = [
         output: (a) => {
             return a / 2;
         },
-        difficulty: 0
+        difficulty: 30
     }
 ];

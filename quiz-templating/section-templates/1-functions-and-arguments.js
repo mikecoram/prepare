@@ -21,7 +21,7 @@ exports.entries = [
             new ValueGenerator('string')
         ],
         output: (a) => { return a; },
-        difficulty: 0
+        difficulty: 10
     },
     {
         input: 'printMultiple("Hello", 3)',
@@ -32,7 +32,7 @@ exports.entries = [
         output: () => {
             return 'Goodbye\nGoodbye';
         },
-        difficulty: 0
+        difficulty: 20
     },
     {
         inputTemplate: 'printMultiple(${1}, ${2})',
@@ -47,6 +47,6 @@ exports.entries = [
             }
             return out;
         },
-        difficulty: 0
+        difficulty: 30
     }
 ];

@@ -2,7 +2,7 @@ const ValueGenerator = require('../value-generator').ValueGenerator;
 
 exports.info = {
     name: 'Conditional logic: else',
-    difficulty: 0
+    difficulty: 50
 };
 
 exports.entries = [
@@ -28,7 +28,7 @@ exports.entries = [
         output: (a) => {
             return 'x is not greater than ' + a;
         },
-        difficulty: 0
+        difficulty: 50
     },
     {
         inputTemplate:
@@ -49,7 +49,7 @@ exports.entries = [
             return 'x is equal to ' + a 
                 + '\nx is not equal to ' + b;
         },
-        difficulty: 0
+        difficulty: 60
     },
     // Same question but with a reassignment
     {
@@ -72,6 +72,6 @@ exports.entries = [
             return 'x is equal to ' + a 
                 + '\nx is equal to ' + b;
         },
-        difficulty: 0
+        difficulty: 80
     }
 ];

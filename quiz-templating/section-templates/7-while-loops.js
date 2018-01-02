@@ -2,7 +2,7 @@ const ValueGenerator = require('../value-generator').ValueGenerator;
 
 exports.info = {
     name: 'Loops: while',
-    difficulty: 0
+    difficulty: 70
 };
 
 exports.entries = [
@@ -31,7 +31,7 @@ exports.entries = [
             }
             return result;
         },
-        difficulty: 0
+        difficulty: 70
     },
     {
         inputTemplate:
@@ -51,6 +51,6 @@ exports.entries = [
             }
             return result;
         },
-        difficulty: 0
+        difficulty: 90
     }
 ];

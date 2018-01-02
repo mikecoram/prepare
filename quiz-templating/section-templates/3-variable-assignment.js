@@ -28,7 +28,7 @@ exports.entries = [
         output: (a) => {
             return a;
         },
-        difficulty: 0
+        difficulty: 20
     },
     {
         inputTemplate: 'let x = ${1}\nlet y = x\nprint(x)',
@@ -38,7 +38,7 @@ exports.entries = [
         output: (a) => {
             return a;
         },
-        difficulty: 0
+        difficulty: 40
     },
     {
         inputTemplate: 'let x = ${1}\nlet y = x + ${2}\nprint(y)',
@@ -49,7 +49,7 @@ exports.entries = [
         output: (a, b) => {
             return a + b;
         },
-        difficulty: 0
+        difficulty: 40
     },
     {
         inputTemplate: 'let x = ${1} * ${2}\nlet y = x * ${3}\nprint(y)',
@@ -61,7 +61,7 @@ exports.entries = [
         output: (a, b, c) => {
             return a * b * c;
         },
-        difficulty: 0
+        difficulty: 50
     },
     {
         input: 'let x = 7\nlet x = 1\nprint(x)',
@@ -76,7 +76,7 @@ exports.entries = [
         output: (a, b) => {
             return b;
         },
-        difficulty: 0
+        difficulty: 60
     },
     {
         input: 'let x = 5\nlet x = x + 3\nprint(x)',
@@ -91,6 +91,6 @@ exports.entries = [
         output: (a, b) => {
             return a + b;
         },
-        difficulty: 0
+        difficulty: 70
     }
 ];

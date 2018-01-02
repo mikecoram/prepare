@@ -31,7 +31,7 @@ exports.entries = [
         output: (a, b, c) => {
             return a + b + c;
         },
-        difficulty: 0
+        difficulty: 10
     },
     {
         inputTemplate: 'print(${1} - ${2})',
@@ -57,7 +57,7 @@ exports.entries = [
         output: (a, b) => {
             return a * b;
         },
-        difficulty: 0
+        difficulty: 10
     },
     {
         input: 'print(4 / 2)',
@@ -71,6 +71,6 @@ exports.entries = [
         output: (a, b) => {
             return a / b;
         },
-        difficulty: 0
+        difficulty: 20
     }
 ];
