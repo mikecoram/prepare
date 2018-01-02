@@ -15,7 +15,7 @@ exports.new = function(req, res) {
             console.log('Generating new quiz...')
             QuizGenerator.generate({
                 userId: req.user.id,
-                graded: false,
+                graded: true,
                 difficulty: 0
             }).then(() => {
                 res.redirect('/quiz?tutorial=true');
