@@ -26,6 +26,12 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Quiz.associate = function(models) {
+    Quiz.belongsTo(models.User, {
+      foreignKey: 'userId',
+      targetKey: 'id',
+      as: 'user'
+    });
+
     Quiz.hasMany(models.Section, {
       foreignKey: 'quizId',
       as: 'sections'

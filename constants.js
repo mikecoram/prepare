@@ -1,5 +1,6 @@
 exports.USER_ROLE = {
     USER: 'user',
+    TUTOR: 'tutor',
     ADMIN: 'admin'
 };
 

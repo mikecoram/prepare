@@ -27,7 +27,9 @@ exports.main = function (app) {
     app.get('/quiz/results', [isLoggedIn], quizHandler.results);
 
     let resultsHandler = require('./handlers/results');
-    app.get('/results/user/:userId', [isLoggedIn], resultsHandler.userResults)
+    app.get('/results/user/:userId', [isLoggedIn], resultsHandler.userResults);
+
+    let tutorHandler = require('./handlers/tutor');
     
     var adminController = require('./controllers/admin');
     // Admin middleware
