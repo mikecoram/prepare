@@ -4,26 +4,29 @@
     <div class="jumbotron">
         <h1>Students</h1>
         {{#if hasStudents}}
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Number Of Quizzes Attempted</th>
+                    <th scope="col">Latest Quiz Finished On</th>
+                    <th scope="col">Latest Difficulty</th>
+                    <th scope="col">Latest Result</th>
+                </thead>
+                <tbody>
+                    {{#each students}}
+                        <tr>
+                            <td><a href="/results/user/{{id}}">{{emailAddress}}</a></td>
+                            <td>{{numQuizzes}}</td>
+                            <td>{{mostRecentQuizFinishedDate}}</td>
+                            <td>{{mostRecentQuizDifficulty}}</td>
+                            <td>{{mostRecentQuizResult}}%</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
         {{else}}
+            <h2>There are no students to display.</h2>
         {{/if}}
-        <table class="table table-striped table-bordered">
-            <thead>
-                <th scope="col">Email Address</th>
-                <th scope="col">Number Of Quizzes Attempted</th>
-                <th scope="col">Last Quiz Finished On</th>
-                <th scope="col">Most Recent Result</th>
-            </thead>
-            <tbody>
-                {{#each students}}
-                    <tr>
-                        <td>{{emailAddress}}</td>
-                        <td>{{numQuizzes}}</td>
-                        <td>{{mostRecentQuizFinishedDate}}</td>
-                        <td>{{mostRecentResult}}</td>
-                    </tr>
-                {{/each}}
-            </tbody>
-        </table>
     </div>
 
 </div> <!-- /container -->

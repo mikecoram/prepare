@@ -1,12 +1,27 @@
 const QuizResults = require('../lib/quiz-results');
+const DateHelper = require('../lib/date-helper');
+const UserHelper = require('../lib/user-helper');
 
 exports.userResults = function(req, res) {
+    UserHelper.getUser(req.params.userId).then((user) => {
+        QuizResults.getFinishedQuizzes(user).then((quizzes) => {
+            res.render('results/user', {
+                authorised: req.user != undefined,
+                quizzes: formatData(quizzes),
+                hasQuizzes: quizzes.length != 0,
+                heading: 'User Results'
+            });
+        });
+    });
+}
+
+exports.myResults = function (req, res) {
     QuizResults.getFinishedQuizzes(req.user).then((quizzes) => {
         res.render('results/user', {
             authorised: req.user != undefined,
             quizzes: formatData(quizzes),
             hasQuizzes: quizzes.length != 0,
-            heading: req.params.userId == 'my' ? 'My Results' : 'User Results'
+            heading:'My Results'
         });
     });
 }
@@ -18,20 +33,11 @@ function formatData(raw) {
     raw.forEach((q) => {
         quizzes.push({
             number: count--,
-            createdAt: formatDate(q.createdAt),
-            finishedOn: formatDate(q.finishedOn),
+            createdAt: DateHelper.format(q.createdAt),
+            finishedOn: DateHelper.format(q.finishedOn),
             result: q.result
         });
     });
 
     return quizzes;
-}
-
-const DATE_FORMAT_OPTIONS = {  
-    weekday: "long", year: "numeric", month: "short",  
-    day: "numeric", hour: "2-digit", minute: "2-digit"  
-};
-
-function formatDate(date) {
-    return date.toLocaleTimeString('en-uk', DATE_FORMAT_OPTIONS);
 }

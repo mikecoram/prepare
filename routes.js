@@ -27,10 +27,13 @@ exports.main = function (app) {
     app.get('/quiz/results', [isLoggedIn], quizHandler.results);
 
     let resultsHandler = require('./handlers/results');
-    app.get('/results/user/:userId', [isLoggedIn], resultsHandler.userResults);
-
-    let tutorHandler = require('./handlers/tutor');
+    app.get('/myresults', [isLoggedIn], resultsHandler.myResults);
     
+    const tutorHandler = require('./handlers/tutor');
+    const tutorController = require('./controllers/tutor');
+    app.get('/tutor', [tutorController.isTutor], tutorHandler.tutorDashboard);
+    app.get('/results/user/:userId', [tutorController.isTutor], resultsHandler.userResults);
+
     var adminController = require('./controllers/admin');
     // Admin middleware
     var isAdmin = adminController.isAdmin;

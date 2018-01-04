@@ -1,12 +1,17 @@
 const TUTOR_ROLE = require('../constants').USER_ROLE.TUTOR;
 
 exports.isTutor = function(req, res, next) {
-    if (_isTutor(user)) {
+    if (_isTutor(req.user)) {
         return next();
     }
     res.redirect('/login');
 }
 
 function _isTutor(user) {
-    return user != undefined && user.role == TUTOR_ROLE;
+    if (user) {
+        return user.role == TUTOR_ROLE;
+    }
+    else {
+        return false;
+    }
 }
