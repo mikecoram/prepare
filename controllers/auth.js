@@ -4,12 +4,20 @@ var User = require(__base + '/models').User;
 var PasswordReset = require(__base + '/models').PasswordReset;
 var emailHelper = require(__base + '/lib/email');
 var encryption = require(__base + '/lib/encryption');
+const USER_ROLES = require('../constants').USER_ROLE;
 
 exports.isLoggedIn = function (req, res, next) {
     if (req.isAuthenticated()) {
-        return next();
+        if (req.user.role == USER_ROLES.TUTOR) {
+            res.redirect('/tutor');
+        }
+        else {
+            return next();
+        }
     }
-    res.redirect('/login');
+    else {
+        res.redirect('/login');
+    }
 }
 
 // If user is authenticated, redirect them to the user area
