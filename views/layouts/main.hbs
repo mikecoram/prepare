@@ -29,8 +29,12 @@
           </ul>
           {{#if authorised}}
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="/quiz"><span class="glyphicon glyphicon-file"></span> Quiz</a></li>
-              <li><a href="/myresults"><span class="glyphicon glyphicon-ok"></span> My Results</a></li>
+              {{#if tutor}}
+                  <li><a href="/tutor"><span class="glyphicon glyphicon-ok"></span> All Results</a></li>
+              {{else}}
+                  <li><a href="/quiz"><span class="glyphicon glyphicon-file"></span> Quiz</a></li>
+                  <li><a href="/myresults"><span class="glyphicon glyphicon-ok"></span> My Results</a></li>
+              {{/if}}
               <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
           {{else}}

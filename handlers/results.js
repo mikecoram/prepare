@@ -6,6 +6,8 @@ exports.userResults = function(req, res) {
     UserHelper.getUser(req.params.userId).then((user) => {
         QuizResults.getFinishedQuizzes(user).then((quizzes) => {
             res.render('results/user', {
+                tutor: true,
+                authorised: req.user != undefined,
                 quizzes: formatData(quizzes),
                 hasQuizzes: quizzes.length != 0,
                 heading: 'User Results'
