@@ -47,14 +47,15 @@ function clearTemplates() {
     const DROP_SETTINGS = {where: {}};
 
     return new Promise((resolve, reject) => {
-      SectionTemplate.destroy(DROP_SETTINGS).then(() => {
-        ExampleTemplate.destroy(DROP_SETTINGS).then(() => {
-            QuestionTemplate.destroy(DROP_SETTINGS).then(() => {
-                ValueGenerator.destroy(DROP_SETTINGS).then(() => {
-                    resolve();
-                });
-            });
+        Promise.all([
+            SectionTemplate.destroy(DROP_SETTINGS),
+            ExampleTemplate.destroy(DROP_SETTINGS),
+            QuestionTemplate.destroy(DROP_SETTINGS),
+            ValueGenerator.destroy(DROP_SETTINGS)
+        ]).then(() => {
+            resolve();
+        }, err => {
+            reject(err);
         });
-      });
     });
 }
