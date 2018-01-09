@@ -7,11 +7,12 @@ exports.userResults = function(req, res) {
         QuizResults.getFinishedQuizzes(user).then((quizzes) => {
             res.render('results/user', {
                 tutor: true,
+                userEmailAddress: user.emailAddress,
                 authorised: req.user != undefined,
                 quizzes: formatData(quizzes, true),
                 hasQuizzes: quizzes.length != 0,
                 heading: 'Quiz Results',
-                userEmailAddress: user.emailAddress
+                graphData: JSON.stringify(createGraphData(quizzes))
             });
         });
     });
@@ -23,9 +24,23 @@ exports.myResults = function (req, res) {
             authorised: req.user != undefined,
             quizzes: formatData(quizzes, false),
             hasQuizzes: quizzes.length != 0,
-            heading:'My Quiz Results'
+            heading:'My Quiz Results',
+            graphData: JSON.stringify(createGraphData(quizzes))
         });
     });
+}
+
+function createGraphData(raw) {
+    let marks = [];
+    let labels = [];
+    let count = 1;
+
+    raw.reverse().forEach(q => {
+        marks.push({y: q.result});
+        labels.push(count++)
+    });
+
+    return {marks: marks, labels: labels};
 }
 
 function formatData(raw, isTutor) {
