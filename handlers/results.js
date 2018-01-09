@@ -8,9 +8,10 @@ exports.userResults = function(req, res) {
             res.render('results/user', {
                 tutor: true,
                 authorised: req.user != undefined,
-                quizzes: formatData(quizzes),
+                quizzes: formatData(quizzes, true),
                 hasQuizzes: quizzes.length != 0,
-                heading: 'User Results'
+                heading: 'Quiz Results',
+                userEmailAddress: user.emailAddress
             });
         });
     });
@@ -20,23 +21,25 @@ exports.myResults = function (req, res) {
     QuizResults.getFinishedQuizzes(req.user).then((quizzes) => {
         res.render('results/user', {
             authorised: req.user != undefined,
-            quizzes: formatData(quizzes),
+            quizzes: formatData(quizzes, false),
             hasQuizzes: quizzes.length != 0,
-            heading:'My Results'
+            heading:'My Quiz Results'
         });
     });
 }
 
-function formatData(raw) {
+function formatData(raw, isTutor) {
     let quizzes = [];
     let count = raw.length;
 
     raw.forEach((q) => {
         quizzes.push({
+            id: q.id,
             number: count--,
             createdAt: DateHelper.format(q.createdAt),
             finishedOn: DateHelper.format(q.finishedOn),
-            result: q.result
+            result: q.result,
+            isTutor: isTutor
         });
     });
 

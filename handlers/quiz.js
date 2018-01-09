@@ -57,9 +57,10 @@ exports.finishedSection = function(req, res) {
         let sectionNum = Number.parseInt(req.params.sectionNum);
 
         res.render('quiz/section', {
+            tutor: true,
+            authorised: true,
             finished: true,
             quizId: req.params.quizId,
-            authorised: req.user != undefined,
             sections: sections,
             sectionData: sectionData,
             hidePreviousBtn: sectionNum == sections[0].number,

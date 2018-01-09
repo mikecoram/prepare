@@ -26,7 +26,6 @@ exports.main = function (app) {
     app.post('/quiz/finish', [isLoggedIn], quizHandler.finish);
     app.get('/quiz/results', [isLoggedIn], quizHandler.results);
     
-    app.get('/quiz/:quizId/section/:sectionNum', [isLoggedIn], quizHandler.finishedSection);
     
     let resultsHandler = require('./handlers/results');
     app.get('/myresults', [isLoggedIn], resultsHandler.myResults);
@@ -35,7 +34,8 @@ exports.main = function (app) {
     const tutorController = require('./controllers/tutor');
     app.get('/tutor', [tutorController.isTutor], tutorHandler.tutorDashboard);
     app.get('/results/user/:userId', [tutorController.isTutor], resultsHandler.userResults);
-
+    app.get('/quiz/:quizId/section/:sectionNum', [tutorController.isTutor], quizHandler.finishedSection);
+    
     var adminController = require('./controllers/admin');
     // Admin middleware
     var isAdmin = adminController.isAdmin;
