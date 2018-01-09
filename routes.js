@@ -25,7 +25,9 @@ exports.main = function (app) {
     app.post('/quiz/answers', [isLoggedIn], quizHandler.uploadAnswers);
     app.post('/quiz/finish', [isLoggedIn], quizHandler.finish);
     app.get('/quiz/results', [isLoggedIn], quizHandler.results);
-
+    
+    app.get('/quiz/:quizId/section/:sectionNum', [isLoggedIn], quizHandler.finishedSection);
+    
     let resultsHandler = require('./handlers/results');
     app.get('/myresults', [isLoggedIn], resultsHandler.myResults);
     

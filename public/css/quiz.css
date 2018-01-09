@@ -74,3 +74,11 @@ textarea.form-control {
 .io-title {
     margin-top:0.4em;
 }
+
+.correct-answer {
+    color: rgb(0, 230, 0);
+}
+
+.incorrect-answer {
+    color: red;
+}

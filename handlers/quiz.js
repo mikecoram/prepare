@@ -46,6 +46,34 @@ exports.quiz = function(req, res) {
     });
 }
 
+exports.finishedSection = function(req, res) {
+    Promise.all([
+        QuizSections.getSections(null, req.params.sectionNum, req.params.quizId),    
+        QuizSections.getSectionData(null, req.params.sectionNum, req.params.quizId)
+    ]).then(results => {
+        let sections = results[0];
+        let sectionData = results[1];
+
+        let sectionNum = Number.parseInt(req.params.sectionNum);
+
+        res.render('quiz/section', {
+            finished: true,
+            quizId: req.params.quizId,
+            authorised: req.user != undefined,
+            sections: sections,
+            sectionData: sectionData,
+            hidePreviousBtn: sectionNum == sections[0].number,
+            hideNextBtn: sectionNum == sections[sections.length - 1].number,
+            showPreviousBtn: sectionNum != sections[0].number,
+            showNextBtn: sectionNum != sections[sections.length - 1].number,
+            previousSectionNum: sectionNum - 1,
+            sectionNum: sectionNum,
+            nextSectionNum: sectionNum + 1,
+            showTutorial: false
+        });
+    });
+}
+
 exports.section = function(req, res) {
     Promise.all([
         QuizSections.getSections(req.user, req.params.sectionNum),    
@@ -69,6 +97,8 @@ exports.section = function(req, res) {
             nextSectionNum: sectionNum + 1,
             showTutorial: req.query.tutorial || false
         });
+    }, err => {
+        console.log(err);
     });
 }
 
