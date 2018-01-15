@@ -9,7 +9,9 @@
             Click on the mark to view a student's answers.
         {{/if}}
 
-        <canvas id="line-graph-container" height="100"></canvas>
+        {{#if hasQuizzes}}
+            <canvas id="line-graph-container" height="100"></canvas>
+        {{/if}}
 
         {{#if hasQuizzes}}
             <table class="table table-striped table-bordered">
