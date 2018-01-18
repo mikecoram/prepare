@@ -33,6 +33,8 @@ exports.main = function (app) {
     const tutorHandler = require('./handlers/tutor');
     const tutorController = require('./controllers/tutor');
     app.get('/tutor', [tutorController.isTutor], tutorHandler.tutorDashboard);
+    app.get('/tutor/settings', [tutorController.isTutor], tutorHandler.settings);
+    app.post('/tutor/settings', [tutorController.isTutor], tutorHandler.saveSettings);
     app.get('/results/user/:userId', [tutorController.isTutor], resultsHandler.userResults);
     app.get('/quiz/:quizId/section/:sectionNum', [tutorController.isTutor], quizHandler.finishedSection);
     

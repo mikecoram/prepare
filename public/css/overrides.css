@@ -15,3 +15,11 @@
 .centered {
     text-align: center;
 }
+
+.right {
+    text-align: right;
+}
+
+.settings-heading {
+    margin-bottom: 0.3em;
+}

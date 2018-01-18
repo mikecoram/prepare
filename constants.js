@@ -10,3 +10,10 @@ exports.USER_STATUS = {
 };
 
 exports.FROM_EMAIL = 'noreply@boilerplate.com';
+
+exports.GLOBAL_SETTING_TITLES = {
+    allowUserToSeeResultBreakdown: 'allowUserToSeeResultBreakdown',
+    toArray: function() {
+        return [this.allowUserToSeeResultBreakdown];
+    }
+}
