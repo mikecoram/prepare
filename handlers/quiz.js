@@ -5,6 +5,7 @@ const QuizAnswers = require('../lib/quiz-answers');
 const QuizGenerator = require(__base + '/lib/quiz-generator');
 const QuizUser = require(__base + '/lib/quiz-user');
 const QuizResults = require('../lib/quiz-results');
+const TutorController = require('../controllers/tutor');
 
 exports.new = function(req, res) {
     QuizUser.hasQuiz(req.user).then((hasQuiz) => {
@@ -46,18 +47,18 @@ exports.quiz = function(req, res) {
     });
 }
 
-exports.finishedSection = function(req, res) {
+exports.finishedSection = async function(req, res) {
     Promise.all([
         QuizSections.getSections(null, req.params.sectionNum, req.params.quizId),    
         QuizSections.getSectionData(null, req.params.sectionNum, req.params.quizId)
-    ]).then(results => {
+    ]).then(async results => {
         let sections = results[0];
         let sectionData = results[1];
 
         let sectionNum = Number.parseInt(req.params.sectionNum);
 
         res.render('quiz/section', {
-            tutor: true,
+            tutor: await TutorController._isTutor(req.user),
             authorised: true,
             finished: true,
             quizId: req.params.quizId,

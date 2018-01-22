@@ -7,6 +7,8 @@ exports.isTutor = function(req, res, next) {
     res.redirect('/login');
 }
 
+exports._isTutor = _isTutor;
+
 const TutorSettings = require('../lib/tutor-settings');
 const QuizUser = require('../lib/quiz-user');
 const GLOBAL_SETTING_TITLES = require("../constants").GLOBAL_SETTING_TITLES;
