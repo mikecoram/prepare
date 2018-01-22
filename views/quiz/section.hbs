@@ -13,8 +13,7 @@
                 data-step="5" data-intro="You can view this tutorial again at any time by clicking here. Good luck!">Tutorial</a>
             <a onclick="uploadAnswers()" data-toggle="modal" data-target="#finishModal" 
                 class="btn btn-danger btn-quiz-control btn-finish pull-right"
-                    data-step="4" data-intro="Once you have attempted every question, you can finish the quiz and have it marked. Make sure you've answered every question before you do this.">
-                    Finish</a>
+                    data-step="4" data-intro="Once you have attempted every question, you can finish the quiz and have it marked. Make sure you've answered every question before you do this.">Finish</a>
         {{/unless}}
 
         <div class="sections pull-right" 
@@ -24,22 +23,19 @@
                 <ul class="pagination section-paginator">
                     <li {{#if hidePreviousBtn}}class="disabled"{{/if}}>
                         <a class="page-link"
-                            {{#if showPreviousBtn}}href="/quiz/{{#if finished}}{{quizId}}/{{/if}}section/{{previousSectionNum}}"{{/if}}
-                                {{#unless finished}}onclick="uploadAnswers()"{{/unless}}>
+                            {{#if showPreviousBtn}}href="/quiz/{{#if finished}}{{quizId}}/{{/if}}section/{{previousSectionNum}}"{{/if}} {{#unless finished}}onclick="uploadAnswers()"{{/unless}}>
                             <span class="glyphicon glyphicon-chevron-left"></span></a>
                     </li>
 
                     {{#each sections}}
                         <li {{#if current}}class="active"{{/if}}>
-                            <a href="{{url}}"
-                                {{#unless finished}}onclick="uploadAnswers()"{{/unless}}>{{number}}</a>
+                            <a href="{{url}}" {{#unless finished}}onclick="uploadAnswers()"{{/unless}}>{{number}}</a>
                         </li>
                     {{/each}}
 
                     <li {{#if hideNextBtn}}class="disabled"{{/if}}>
                         <a class="page-link" 
-                            {{#if showNextBtn}}href="/quiz/{{#if finished}}{{quizId}}/{{/if}}section/{{nextSectionNum}}"{{/if}}
-                            {{#unless finished}}onclick="uploadAnswers()"{{/unless}}>
+                            {{#if showNextBtn}}href="/quiz/{{#if finished}}{{quizId}}/{{/if}}section/{{nextSectionNum}}"{{/if}} {{#unless finished}}onclick="uploadAnswers()"{{/unless}}>
                             <span class="glyphicon glyphicon-chevron-right"></span>
                         </a>
                     </li>
@@ -63,8 +59,7 @@
                 {{#if example}}data-step="1" data-intro="Each section of the quiz will have 1 or more examples. Both the input and the output are filled in for you. Use these to work out how to answer the questions."
                 {{else}}data-step="2" data-intro="For each question you should fill in what you think the output will be based on the input code."
                 {{/if}}
-            {{/if}}
-        >
+            {{/if}}>
             <div class="col-md-6 question-col">
                 <textarea class="form-control" disabled>{{input}}</textarea>
             </div>
