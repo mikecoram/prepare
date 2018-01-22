@@ -12,6 +12,10 @@ const QuizUser = require('../lib/quiz-user');
 const GLOBAL_SETTING_TITLES = require("../constants").GLOBAL_SETTING_TITLES;
 
 exports.tutorOrUserIfAllowed = async function(req, res, next) {
+    if (!req.user) {
+        res.redirect('/login');
+    }
+
     if (_isTutor(req.user)) {
         return next();
     }

@@ -7,6 +7,7 @@ exports.userResults = function(req, res) {
         QuizResults.getFinishedQuizzes(user).then((quizzes) => {
             res.render('results/user', {
                 tutor: true,
+                linkResults: true,
                 userEmailAddress: user.emailAddress,
                 authorised: req.user != undefined,
                 quizzes: formatData(quizzes, true),
@@ -18,11 +19,15 @@ exports.userResults = function(req, res) {
     });
 }
 
-exports.myResults = function (req, res) {
+const TutorSettings = require('../lib/tutor-settings');
+
+exports.myResults = async function (req, res) {
+    let linkResults = await TutorSettings.userAllowed();
+    
     QuizResults.getFinishedQuizzes(req.user).then((quizzes) => {
         res.render('results/user', {
             authorised: req.user != undefined,
-            quizzes: formatData(quizzes, false),
+            quizzes: formatData(quizzes, linkResults),
             hasQuizzes: quizzes.length != 0,
             heading:'My Quiz Results',
             graphData: JSON.stringify(createGraphData(quizzes))
@@ -43,7 +48,7 @@ function createGraphData(raw) {
     return {marks: marks, labels: labels};
 }
 
-function formatData(raw, isTutor) {
+function formatData(raw, linkResults) {
     let quizzes = [];
     let count = raw.length;
 
@@ -54,7 +59,7 @@ function formatData(raw, isTutor) {
             createdAt: DateHelper.format(q.createdAt),
             finishedOn: DateHelper.format(q.finishedOn),
             result: q.result,
-            isTutor: isTutor
+            linkResults: linkResults
         });
     });
 
