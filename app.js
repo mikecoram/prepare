@@ -11,8 +11,8 @@ var credentials = require(__base + '/config/credentials');
 var models = require(__base + '/models');
 
 // Init express app
-var express = require('express');
-var app = express();
+let express = require('express');
+let app = express();
 
 // Constants
 var locals = require(__base + '/lib/locals');
@@ -79,9 +79,9 @@ app.use(function (err, req, res, next) {
 });
 
 // Listen
-var server = app.listen(process.env.PORT || 8000, function () {
+let server = app.listen(process.env.PORT || 8000, function () {
     var host = server.address().address;
     var port = server.address().port;
 
-    console.log('Listening as http://%s:%s', 'localhost', port);
+    console.log('Listening as http://%s:%s', host = '::' ? 'localhost' : host, port);
 });
