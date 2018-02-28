@@ -7,6 +7,8 @@
 <div class="container">
 
     <div class="row">
+        <h3 style="display:inline;">Quiz Number: <span style="color:red;">{{quizId}}</span></h3>
+
         {{#unless finished}}
             <a href="/quiz/intro" onclick="uploadAnswers()" class="btn btn-info btn-intro btn-quiz-control">Introduction</a>
             <a onclick="startTutorial()" class="btn btn-info btn-quiz-control"
@@ -15,6 +17,7 @@
                 class="btn btn-danger btn-quiz-control btn-finish pull-right"
                     data-step="4" data-intro="Once you have attempted every question, you can finish the quiz and have it marked. Make sure you've answered every question before you do this.">Finish</a>
         {{/unless}}
+
 
         <div class="sections pull-right" 
             data-step="3" data-intro="Once you have answered all the questions, you can move to other sections in the quiz. Don't worry about saving your answers, this happens automatically." >

@@ -79,14 +79,17 @@ exports.finishedSection = async function(req, res) {
 exports.section = function(req, res) {
     Promise.all([
         QuizSections.getSections(req.user, req.params.sectionNum),    
-        QuizSections.getSectionData(req.user, req.params.sectionNum)
+        QuizSections.getSectionData(req.user, req.params.sectionNum),
+        QuizUser.getQuiz(req.user)
     ]).then((results) => {
         let sections = results[0];
         let sectionData = results[1];
+        let quiz = results[2];
 
         let sectionNum = Number.parseInt(req.params.sectionNum);
 
         res.render('quiz/section', {
+            quizId: quiz.id,
             authorised: req.user != undefined,
             sections: sections,
             sectionData: sectionData,
