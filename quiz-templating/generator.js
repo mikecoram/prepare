@@ -22,7 +22,7 @@ const seeder = require('./seeder');
 
 function generate() {
     return new Promise((resolve, reject) => {
-        let templateData = reader.read();
+        let templateData = reader.read(reader.TEMPLATE_DIR);
 
         let seq = [];
 

@@ -2,12 +2,13 @@ const fs = require('fs');
 
 const TEMPLATE_DIR = __dirname + '/section-templates';
 
+exports.TEMPLATE_DIR = TEMPLATE_DIR;
 exports.read = read;
 
-function read() {
+function read(templateDir) {
     let sectionTemplates = [];
 
-    getTemplateData(TEMPLATE_DIR).forEach((sd) => {
+    getTemplateData(templateDir).forEach((sd) => {
         let sectionTemplate = sd.info, 
             exampleTemplates = [], 
             questionTemplates = [], 
