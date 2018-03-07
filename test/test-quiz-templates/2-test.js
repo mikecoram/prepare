@@ -18,6 +18,6 @@ exports.entries = [
             new ValueGenerator('integer', 1, 10)
         ],
         output: (a, b) => { return a + b; },
-        difficulty: 70
+        difficulty: 40
     }
 ];

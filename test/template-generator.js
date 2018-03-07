@@ -1,6 +1,8 @@
 const Reader = require('../quiz-templating/reader');
 const Seeder = require('../quiz-templating/seeder');
 
+const TestTemplates = require('./lib/templates');
+
 const { SectionTemplate, ExampleTemplate, QuestionTemplate, ValueGenerator} = require('../models');
 
 const TEST_TEMPLATE_DIR = __dirname + '/test-quiz-templates';
@@ -17,7 +19,7 @@ describe('quiz template generator', () => {
 
     it('adds templates to the database', done => {
         var test = async function() {
-            await clearTemplates();
+            await TestTemplates.clearTemplates();
 
             let sections = Reader.read(TEST_TEMPLATE_DIR);
             for (let section of sections) {
@@ -46,10 +48,3 @@ describe('quiz template generator', () => {
         });
     });
 });
-
-async function clearTemplates() {
-    await SectionTemplate.destroy({where:{}});
-    await ExampleTemplate.destroy({where:{}});
-    await QuestionTemplate.destroy({where:{}});
-    await ValueGenerator.destroy({where:{}});
-}
