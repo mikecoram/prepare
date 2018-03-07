@@ -1,15 +1,14 @@
-const Constants = require('../constants');
 const UserHelper = require('../lib/user-helper');
-const { User } = require('../models');
+const TestUser = require('./lib/user');
 
 describe('user-helper', () => {
     it('retrieves the correct user', done => {
         let test = async function() {
-            let createdUser = await createTestUser();
+            let createdUser = await TestUser.createTestUser();
             let user = await UserHelper.getUser(createdUser.id);
     
             if (user.id == createdUser.id) {
-                await deleteTestUser(createdUser);
+                await TestUser.deleteTestUser(createdUser);
                 return true;
             }
         }
@@ -20,16 +19,3 @@ describe('user-helper', () => {
         });
     });
 });
-
-async function createTestUser() {
-    return await User.create({
-        emailAddress: "x@x.com",
-        password: "password1",
-        status: Constants.USER_STATUS.ACTIVE,
-        role: Constants.USER_ROLE.USER
-    });
-}
-
-function deleteTestUser(user) {
-    return User.destroy({where: {id: user.id}});
-}
