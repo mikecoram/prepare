@@ -16,7 +16,7 @@ describe('email validation', () => {
             done();
     });
 
-    it('rejects an email address a 1 character extension', done => {
+    it('rejects an email address with a 1 character extension', done => {
         if (!Validation.isValidEmailAddress("user@user.c"))
             done();
     });
