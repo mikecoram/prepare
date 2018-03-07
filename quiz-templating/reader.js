@@ -7,7 +7,7 @@ exports.read = read;
 function read() {
     let sectionTemplates = [];
 
-    getTemplateData().forEach((sd) => {
+    getTemplateData(TEMPLATE_DIR).forEach((sd) => {
         let sectionTemplate = sd.info, 
             exampleTemplates = [], 
             questionTemplates = [], 
@@ -62,12 +62,12 @@ function read() {
     return sectionTemplates;
 }
 
-function getTemplateData() {
+function getTemplateData(templateDir) {
     let data = [];
-    let sections = fs.readdirSync(TEMPLATE_DIR);
+    let sections = fs.readdirSync(templateDir);
 
     sections.forEach((sd) => {
-        data.push(require(TEMPLATE_DIR + '/' + sd));
+        data.push(require(templateDir + '/' + sd));
     });
 
     return data;
