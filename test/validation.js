@@ -21,7 +21,7 @@ describe('email validation', () => {
             done();
     });
 
-    it('reject an email address with illegal characters', done => {
+    it('rejects an email address with illegal characters', done => {
         if (!Validation.isValidEmailAddress("us!er@user*.com"))
         done();
     });
