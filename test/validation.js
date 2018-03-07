@@ -20,6 +20,11 @@ describe('email validation', () => {
         if (!Validation.isValidEmailAddress("user@user.c"))
             done();
     });
+
+    it('reject an email address with illegal characters', done => {
+        if (!Validation.isValidEmailAddress("us!er@user*.com"))
+        done();
+    });
 });
 
 describe('password validation', () => {
