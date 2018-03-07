@@ -10,4 +10,13 @@ describe('database', function () {
             done(err);
         });
     });
+
+    it('models sync', function (done) {
+        const models = require('../models');
+        models.sequelize.sync().then(function() {
+            done();
+        }).catch(function(err) {
+            done(err);
+        });
+    });
 });
