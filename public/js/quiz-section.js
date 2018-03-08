@@ -2,6 +2,8 @@
     if (showTutorial) {
         startTutorial();
     }
+
+    setInterval(uploadAnswers, 2000);
 })();
 
 function startTutorial() {
