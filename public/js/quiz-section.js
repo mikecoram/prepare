@@ -36,10 +36,10 @@ function apiCall(answers) {
             sectionNum: sectionNum,
             answers: answers
         },
-        success: (result) => {
+        success: function (result) {
             console.log('Success:'+result);
         },
-        error: (err) => {
+        error: function (err) {
             console.log(err);
         }
     });
