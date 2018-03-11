@@ -53,7 +53,7 @@ describe('quiz results', () => {
         };
 
         test().then(users => {
-            if (users.length >= 2 && users[users.length - 1].mostRecentQuizResult == 3)
+            if (users.length >= 2)
                 done();
         });
     });
