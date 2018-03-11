@@ -2,8 +2,11 @@ exports.createTestQuiz = createTestQuiz;
 exports.createFinishedTestQuiz = createFinishedTestQuiz;
 exports.deleteTestQuiz = deleteTestQuiz;
 exports.getQuiz = getQuiz;
+exports.generateQuiz = generateQuiz;
 
 const { Quiz, Section, Question, Example } = require('../../models');
+const QuizGenerator = require('../../lib/quiz-generator');
+const TestTemplates = require('./templates');
 
 function createTestQuiz(userId) {
     return Quiz.create({
@@ -48,4 +51,16 @@ function deleteTestQuiz(quiz) {
             id: quiz.id
         }
     });
+}
+
+async function generateQuiz(user) {
+    await TestTemplates.clearTemplates();
+    await TestTemplates.createTemplates();
+
+    let generatedQuiz = await QuizGenerator.generate(user, {
+        graded: true,
+        difficulty: 50
+    });
+
+    return await getQuiz(generatedQuiz.id);
 }
