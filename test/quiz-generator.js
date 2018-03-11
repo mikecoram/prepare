@@ -25,7 +25,7 @@ describe('quiz generator', () => {
                 , quiz.sections[0].examples.length == 1
                 , quiz.sections[1].questions.length == 1)
 
-                console.log(quiz)
+            console.log(quiz)
 
             return quiz.sections.length == 2 
             && quiz.sections[0].questions.length == 2
