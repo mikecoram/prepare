@@ -2,12 +2,13 @@ const fs = require('fs');
 
 const TEMPLATE_DIR = __dirname + '/section-templates';
 
+exports.TEMPLATE_DIR = TEMPLATE_DIR;
 exports.read = read;
 
-function read() {
+function read(templateDir) {
     let sectionTemplates = [];
 
-    getTemplateData().forEach((sd) => {
+    getTemplateData(templateDir).forEach((sd) => {
         let sectionTemplate = sd.info, 
             exampleTemplates = [], 
             questionTemplates = [], 
@@ -62,12 +63,12 @@ function read() {
     return sectionTemplates;
 }
 
-function getTemplateData() {
+function getTemplateData(templateDir) {
     let data = [];
-    let sections = fs.readdirSync(TEMPLATE_DIR);
+    let sections = fs.readdirSync(templateDir);
 
     sections.forEach((sd) => {
-        data.push(require(TEMPLATE_DIR + '/' + sd));
+        data.push(require(templateDir + '/' + sd));
     });
 
     return data;

@@ -1,8 +1,6 @@
 const { SectionTemplate, ExampleTemplate, QuestionTemplate, ValueGenerator } = require('../models');
 
 exports.seed = seed;
-exports.createRecord = createRecord;
-exports.createManyRecords = createManyRecords;
 
 // Seed all the templates for a section
 function seed(sectionTemplate, exampleTemplates, questionTemplates, valueGenerators) {
