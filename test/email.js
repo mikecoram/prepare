@@ -1,4 +1,4 @@
-var emailHelper = require('../lib/email');
+const EmailHelper = require('../lib/email');
 
 describe('email', function () {
     it ('sends', function (done)  {
