@@ -1,7 +1,7 @@
-const { SectionTemplate, ExampleTemplate, QuestionTemplate, ValueGenerator} = require('../../models');
-
 exports.clearTemplates = clearTemplates;
 exports.createTemplates = createTemplates;
+
+const { SectionTemplate, ExampleTemplate, QuestionTemplate, ValueGenerator} = require('../../models');
 
 async function clearTemplates() {
     await SectionTemplate.destroy({where:{}});
